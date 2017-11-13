@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/* https://nlp.stanford.edu/software/tagger.shtml#Download */
+//This is the Stanford parts of speech link
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
