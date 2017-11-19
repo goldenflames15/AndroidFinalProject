@@ -33,4 +33,20 @@ public class sentance {
 
         return full;
     }
+
+    public boolean checkPos(String word, String part)
+    {
+        int index = 0;
+
+        for (int i = 0; i < sentence[0].length; i++)
+        {
+            if(sentence[0][i] == word)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        return part == sentence[1][index];
+    }
 }
