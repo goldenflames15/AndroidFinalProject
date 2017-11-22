@@ -1,13 +1,14 @@
 package edu.clarkson.ee408.androidfinalproject;
 
+
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.Button;
 
 /* https://nlp.stanford.edu/software/tagger.shtml#Download */
 //This is the Stanford parts of speech link
@@ -19,30 +20,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String[] sentence1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
+        String[] sentence2 = {"Go", " to", " the", " last", " building", " on", " the", " left."};
+        String[] sentence3 = {"Let's", " go", " to", " the", " moon!"};
+        String[] sentence4 = {"You", " must", " construct", " additional", " pylons."};
+        String[] sentence5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major", " general!"};
 
-    }
+        String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun"};
 
-    //Test Commit
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
