@@ -23,19 +23,17 @@ public class quiz
     * }
     * */
 
-    /*void alertPlayer(){
-        if(sentences.checkPos(word, button.getText().toString()))
+    int alertPlayer(String Pos1, String Pos2)
+    {
+
+        if(sentance.checkPos(Pos1, Pos2))
         {
-            setButtonColor(Color green);
-            playsound, ding
+            return 0;
         }
 
         else
         {
-            setButtonColor(Color red);
-            playsound buzzer
+            return 1;
         }
-
-        transition (right to left if wrong, left to right if correct);
-    }*/
+    }
 }

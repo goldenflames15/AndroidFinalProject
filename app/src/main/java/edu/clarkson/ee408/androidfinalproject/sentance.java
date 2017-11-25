@@ -24,7 +24,7 @@ package edu.clarkson.ee408.androidfinalproject;
  */
 
 public class sentance {
-    private String[][] sentence ;
+    private static String[][] sentence ;
 
     sentance (String[] words, String[] pos)
     {
@@ -53,7 +53,7 @@ public class sentance {
         return full;
     }
 
-    public boolean checkPos(String word, String part)
+    public static boolean checkPos(String word, String part)
     {
         int index = 0;
 
