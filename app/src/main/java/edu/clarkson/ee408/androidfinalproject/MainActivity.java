@@ -23,15 +23,15 @@ public class MainActivity extends AppCompatActivity {
         quiz game = new quiz();
 
         String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
-        String[] pos1 = {};
+        String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective"};
         String[] sen2 = {"Go", " to", " the", " last", " building", " on", " the", " left."};
-        String[] pos2 = {};
+        String[] pos2 = {"verb", "preposition", "adverb", "adjective", "noun", "preposition", "adverb", "noun"};
         String[] sen3 = {"Let's", " go", " to", " the", " moon!"};
-        String[] pos3 = {};
+        String[] pos3 = {"contraction", "verb", "preposition", "adverb", "noun"};
         String[] sen4 = {"You", " must", " construct", " additional", " pylons."};
-        String[] pos4 = {};
+        String[] pos4 = {"noun", "verb", "verb", "adjective", "noun"};
         String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major", " general!"};
-        String[] pos5 = {};
+        String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "noun", "adjective", "noun"};
 
         sentance[] sentences;
         sentences = new sentance[]{new sentance(sen1,pos1),
