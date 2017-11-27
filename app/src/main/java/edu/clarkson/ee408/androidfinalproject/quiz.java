@@ -1,6 +1,7 @@
 package edu.clarkson.ee408.androidfinalproject;
 
 import java.util.Random;
+import java.lang.Math;
 
 /**
  * Created by Rancerle on 11/25/2017.
@@ -9,13 +10,17 @@ import java.util.Random;
 public class quiz
 {
 
-     int pickWord(String sen)
+    public quiz(){};
+
+    public int pickWord(String sen)
      {
-         return Random.nextInt((sen.length() - 1) - 0 + 1) + 0;
+         int min = 0;
+         int max = sen.length();
+         return (int)Math.floor(Math.random()*max) + min;
      }
 
 
-    int alertPlayer(String Pos1, String Pos2)
+    public int alertPlayer(String Pos1, String Pos2)
     {
 
         if(sentance.checkPos(Pos1, Pos2))

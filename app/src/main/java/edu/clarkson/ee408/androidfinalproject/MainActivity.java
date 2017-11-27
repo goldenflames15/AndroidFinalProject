@@ -20,14 +20,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        quiz game = new quiz();
 
-        String[] sentence1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
-        String[] sentence2 = {"Go", " to", " the", " last", " building", " on", " the", " left."};
-        String[] sentence3 = {"Let's", " go", " to", " the", " moon!"};
-        String[] sentence4 = {"You", " must", " construct", " additional", " pylons."};
-        String[] sentence5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major", " general!"};
+        String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
+        String[] pos1 = {};
+        String[] sen2 = {"Go", " to", " the", " last", " building", " on", " the", " left."};
+        String[] pos2 = {};
+        String[] sen3 = {"Let's", " go", " to", " the", " moon!"};
+        String[] pos3 = {};
+        String[] sen4 = {"You", " must", " construct", " additional", " pylons."};
+        String[] pos4 = {};
+        String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major", " general!"};
+        String[] pos5 = {};
 
-        String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun"};
+        sentance[] sentences;
+        sentences = new sentance[]{new sentance(sen1,pos1),
+                                   new sentance(sen2, pos2),
+                                   new sentance(sen3, pos3),
+                                   new sentance(sen4, pos4),
+                                   new sentance(sen5, pos5)};
+
+        String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction", "none of the above"};
 
     }
 
