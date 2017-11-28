@@ -16,11 +16,14 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private quiz game;
+    private sentance[] sentences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        quiz game = new quiz();
+        game = new quiz();
 
         String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
         String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective"};
@@ -33,16 +36,46 @@ public class MainActivity extends AppCompatActivity {
         String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major", " general!"};
         String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "noun", "adjective", "noun"};
 
-        sentance[] sentences;
         sentences = new sentance[]{new sentance(sen1,pos1),
                                    new sentance(sen2, pos2),
                                    new sentance(sen3, pos3),
                                    new sentance(sen4, pos4),
                                    new sentance(sen5, pos5)};
 
-        String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction", "none of the above"};
+        String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};
 
-    }
+        ButtonHandler bh = new ButtonHandler( );
+
+        public void showNewGameDialog( )
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder( this );
+            alert.setMessage( "Would you like to keep going?" );
+            PlayDialog playAgain = new PlayDialog( );
+            alert.setPositiveButton( "YES", playAgain );
+            alert.setNegativeButton( "NO", playAgain );
+            alert.show( );
+        }
+
+        
+
+
+        private class PlayDialog implements DialogInterface.OnClickListener {
+            public void onClick( DialogInterface dialog, int id ) {
+                if( id == -1 )
+                {
+                    game.resetGame( );
+                    tttView.enableButtons( true );
+                    tttView.resetButtons( );
+                    tttView.setStatusBackgroundColor( Color.GREEN );
+                    tttView.setStatusText( game.result( ) );
+                }
+
+                else if( id == -2 )
+                {
+                    MainActivity.this.finish();
+                }
+            }
+        }
 
 
 }
