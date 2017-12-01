@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private quiz game;
     private sentance[] sentences;
+    private Button b1, b2, b3, b4, b5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +44,43 @@ public class MainActivity extends AppCompatActivity {
                 new sentance(sen5, pos5)};
 
         String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};
+
+        //buttonHandler bh = new buttonHandler();
+        View.OnClickListener click = new View.OnClickListener() { //when any of the 4 main buttons are pressed
+            @Override
+            public void onClick(View v) {
+                Button b = (Button) v;
+                String word = "";
+                //word =b.getText().toString();
+                b.setText(""); // This will be where their choice is sent (ie. which button they pushed
+            }
+        };
+
+        View.OnClickListener playAgain = new View.OnClickListener() { //below will be what happens when play again button is pressed
+            @Override
+            public void onClick(View v) {
+                Button b = (Button) v;
+                //When they push the play again button, this is where the stuff needs to be executed
+            }
+        };
+
+        //Declaring buttons
+        b1 = (Button) findViewById(R.id.Button1);
+        b2 = (Button) findViewById(R.id.Button2);
+        b3 = (Button) findViewById(R.id.Button3);
+        b4 = (Button) findViewById(R.id.Button4);
+        b5 = (Button) findViewById(R.id.Button5); //WHY CAN'T IT FIND BUTTON5 WTF
+
+        //These make things happen when the buttons are pressed, functions and such
+        b1.setOnClickListener(click);
+        b2.setOnClickListener(click);
+        b3.setOnClickListener(click);
+        b4.setOnClickListener(click);
+        b5.setOnClickListener(playAgain);
+    }
+}
 /*
-        buttonHandler bh = new buttonHandler( );
-
-        b1 = (Button) findViewById(R.id.b1); //These need to be new buttons we don't have yet
-        b2 = (Button) findViewById(R.id.b2);
-        b1.setOnClickListener(myhandler1);
-        b2.setOnClickListener(myhandler2);
-*/
-
-    public void showNewGameDialog() {
+    public void showNewGameDialog() {                                //If you make PlayDialog a new class then this would go in that
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setMessage("Would you like to keep going?");
         PlayDialog playAgain = new PlayDialog();
@@ -60,7 +88,12 @@ public class MainActivity extends AppCompatActivity {
         alert.setNegativeButton("NO", playAgain);
         alert.show();
     }
-}
+
+
+   /* public class buttonHandler implements View.OnClickListener { //It says this should be in it's own java file since it's a class, just use functions there's no reason for extra classes
+        public void onClick( View v ) {
+
+        }
 
         public class PlayDialog implements DialogInterface.OnClickListener {
             public void onClick( DialogInterface dialog, int id ) {
@@ -80,5 +113,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+*/
 
-}
