@@ -33,4 +33,7 @@ public class quiz
             return 1;
         }
     }
+
+    //resetGame function
+    //result function
 }
