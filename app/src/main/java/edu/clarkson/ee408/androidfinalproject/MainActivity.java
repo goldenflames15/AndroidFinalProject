@@ -23,8 +23,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         game = new quiz();
+
+        //Declaring buttons
+        b1 = (Button) findViewById(R.id.Button1);
+        b2 = (Button) findViewById(R.id.Button2);
+        b3 = (Button) findViewById(R.id.Button3);
+        b4 = (Button) findViewById(R.id.Button4);
+        b5 = (Button) findViewById(R.id.Button5); //WHY CAN'T IT FIND BUTTON5 WTF
 
         String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
         String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective"};
@@ -49,10 +57,36 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener click = new View.OnClickListener() { //when any of the 4 main buttons are pressed
             @Override
             public void onClick(View v) {
+                int attempts = 0;
                 Button b = (Button) v;
                 String word = "";
-                //word =b.getText().toString();
-                b.setText(""); // This will be where their choice is sent (ie. which button they pushed
+                word = b.getText().toString();
+
+                if(game.alertPlayer("","") == 0)
+                {
+                    attempts = 0;
+                    b.setBackgroundColor(Color.GREEN);
+                    b5.setBackgroundColor(Color.GREEN);
+                    b5.setEnabled(true);
+                }
+
+                else
+                {
+                    if(attempts == 0)
+                    {
+                        attempts++;
+                        b.setBackgroundColor(Color.RED);
+                    }
+
+                    else
+                    {
+                        attempts = 0;
+                        b.setBackgroundColor(Color.RED);
+                        b5.setBackgroundColor(Color.GREEN);
+                        b5.setEnabled(true);
+                    }
+                }
+
             }
         };
 
@@ -61,15 +95,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Button b = (Button) v;
                 //When they push the play again button, this is where the stuff needs to be executed
+
+
+                b5.setBackgroundColor(Color.RED);
+                b5.setEnabled(false);
             }
         };
 
-        //Declaring buttons
-        b1 = (Button) findViewById(R.id.Button1);
-        b2 = (Button) findViewById(R.id.Button2);
-        b3 = (Button) findViewById(R.id.Button3);
-        b4 = (Button) findViewById(R.id.Button4);
-        b5 = (Button) findViewById(R.id.Button5); //WHY CAN'T IT FIND BUTTON5 WTF
+
 
         //These make things happen when the buttons are pressed, functions and such
         b1.setOnClickListener(click);
