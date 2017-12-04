@@ -1,12 +1,7 @@
 package edu.clarkson.ee408.androidfinalproject;
 
-
-import android.content.DialogInterface;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
-import java.util.Random;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -49,15 +44,19 @@ public class MainActivity extends AppCompatActivity {
         String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major", " general!"};
         String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "noun", "adjective", "noun"};
 
-        sentences = new sentance[]{new sentance(sen1, pos1),
+        sentences = new sentance[]
+        {
+                new sentance(sen1, pos1),
                 new sentance(sen2, pos2),
                 new sentance(sen3, pos3),
                 new sentance(sen4, pos4),
-                new sentance(sen5, pos5)};
+                new sentance(sen5, pos5)
+        };
 
         String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};
 
-        View.OnClickListener click = new View.OnClickListener() { //when any of the 4 main buttons are pressed
+        View.OnClickListener click = new View.OnClickListener()
+        { //when any of the 4 main buttons are pressed
             @Override
             public void onClick(View v) {
                 int attempts = 0;
@@ -69,8 +68,14 @@ public class MainActivity extends AppCompatActivity {
                     attempts = 0;
                     b.setBackgroundColor(Color.GREEN); //sets the button they pressed to green
                     b5.setBackgroundColor(Color.GREEN); //sets the playAgain button to green, to show it's activated again
+                    b1.setEnabled(false);
+                    b2.setEnabled(false);
+                    b3.setEnabled(false);
+                    b4.setEnabled(false);
                     b5.setEnabled(true); //activates the playAgain button
-                } else {
+                }
+
+                else {
                     if (attempts == 0) {
                         attempts++;
                         b.setBackgroundColor(Color.RED);
@@ -79,13 +84,18 @@ public class MainActivity extends AppCompatActivity {
                         attempts = 0;
                         b.setBackgroundColor(Color.RED);
                         b5.setBackgroundColor(Color.GREEN);
+                        b1.setEnabled(false);
+                        b2.setEnabled(false);
+                        b3.setEnabled(false);
+                        b4.setEnabled(false);
                         b5.setEnabled(true);
                     }
                 }
             }
         };
 
-        View.OnClickListener playAgain = new View.OnClickListener() { //below will be what happens when play again button is pressed
+        View.OnClickListener playAgain = new View.OnClickListener()
+        { //below will be what happens when play again button is pressed
             @Override
             public void onClick(View v) {
                 Button b = (Button) v;

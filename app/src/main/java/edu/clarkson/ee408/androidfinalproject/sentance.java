@@ -11,8 +11,15 @@ public class sentance {
 
     sentance (String[] words, String[] pos)
     {
-        sentence[0] = words;
-        sentence[1] = pos;
+        for (int i = 0; i < words.length; i++)
+        {
+            sentence[0][i] = words[i];
+        }
+
+        for (int i = 0; i < pos.length; i++)
+        {
+            sentence[1][i] = pos[i];
+        }
     }
 
     public String getSen()
