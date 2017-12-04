@@ -3,23 +3,6 @@ package edu.clarkson.ee408.androidfinalproject;
 /**
  * Created by Rancerle on 11/17/2017.
  *
- * Sentences:
- *
- * S1: 
- * P1:
- *
- * S2:
- * P2:
- *
- * S3:
- * P3:
- *
- * S4:
- * P4:
- *
- * S5:
- * P5:
- *
  *
  */
 
@@ -49,7 +32,6 @@ public class sentance {
             }
 
         }
-
         return full;
     }
 

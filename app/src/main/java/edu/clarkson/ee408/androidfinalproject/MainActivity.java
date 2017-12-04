@@ -32,16 +32,20 @@ public class MainActivity extends AppCompatActivity {
         b2 = (Button) findViewById(R.id.Button2);
         b3 = (Button) findViewById(R.id.Button3);
         b4 = (Button) findViewById(R.id.Button4);
-        b5 = (Button) findViewById(R.id.Button5); //WHY CAN'T IT FIND BUTTON5 WTF
+        b5 = (Button) findViewById(R.id.Button5);
 
         String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
         String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective"};
+
         String[] sen2 = {"Go", " to", " the", " last", " building", " on", " the", " left."};
         String[] pos2 = {"verb", "preposition", "adverb", "adjective", "noun", "preposition", "adverb", "noun"};
+
         String[] sen3 = {"Let's", " go", " to", " the", " moon!"};
         String[] pos3 = {"contraction", "verb", "preposition", "adverb", "noun"};
+
         String[] sen4 = {"You", " must", " construct", " additional", " pylons."};
         String[] pos4 = {"noun", "verb", "verb", "adjective", "noun"};
+
         String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major", " general!"};
         String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "noun", "adjective", "noun"};
 
@@ -53,40 +57,31 @@ public class MainActivity extends AppCompatActivity {
 
         String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};
 
-        //buttonHandler bh = new buttonHandler();
         View.OnClickListener click = new View.OnClickListener() { //when any of the 4 main buttons are pressed
             @Override
             public void onClick(View v) {
                 int attempts = 0;
-                Button b = (Button) v;
+                Button b = (Button) v; //b is the answer the player selected
                 String word = "";
                 word = b.getText().toString();
 
-                if(game.alertPlayer("","") == 0)
-                {
+                if (game.alertPlayer("", "") == 0) {
                     attempts = 0;
-                    b.setBackgroundColor(Color.GREEN);
-                    b5.setBackgroundColor(Color.GREEN);
-                    b5.setEnabled(true);
-                }
-
-                else
-                {
-                    if(attempts == 0)
-                    {
+                    b.setBackgroundColor(Color.GREEN); //sets the button they pressed to green
+                    b5.setBackgroundColor(Color.GREEN); //sets the playAgain button to green, to show it's activated again
+                    b5.setEnabled(true); //activates the playAgain button
+                } else {
+                    if (attempts == 0) {
                         attempts++;
                         b.setBackgroundColor(Color.RED);
-                    }
-
-                    else
-                    {
+                        b.setEnabled(false);
+                    } else {
                         attempts = 0;
                         b.setBackgroundColor(Color.RED);
                         b5.setBackgroundColor(Color.GREEN);
                         b5.setEnabled(true);
                     }
                 }
-
             }
         };
 
@@ -97,11 +92,10 @@ public class MainActivity extends AppCompatActivity {
                 //When they push the play again button, this is where the stuff needs to be executed
 
 
-                b5.setBackgroundColor(Color.RED);
+                b5.setBackgroundColor(Color.RED); //When they push the button,
                 b5.setEnabled(false);
             }
         };
-
 
 
         //These make things happen when the buttons are pressed, functions and such
@@ -112,43 +106,3 @@ public class MainActivity extends AppCompatActivity {
         b5.setOnClickListener(playAgain);
     }
 }
-/*
-    public void showNewGameDialog() {                                //If you make PlayDialog a new class then this would go in that
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setMessage("Would you like to keep going?");
-        PlayDialog playAgain = new PlayDialog();
-        alert.setPositiveButton("YES", playAgain);
-        alert.setNegativeButton("NO", playAgain);
-        alert.show();
-    }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 3b742eb228b42678173737146f01a4b196c5516e
-
-   /* public class buttonHandler implements View.OnClickListener { //It says this should be in it's own java file since it's a class, just use functions there's no reason for extra classes
-        public void onClick( View v ) {
-
-        }
-
-        public class PlayDialog implements DialogInterface.OnClickListener {
-            public void onClick( DialogInterface dialog, int id ) {
-                if( id == -1 )
-                {
-                    game.resetGame( ); //game isn't in this class so can't use it like this
-                    bh.enableButtons( true );
-                    bh.resetButtons( );
-                    bh.setStatusBackgroundColor( Color.GREEN );
-                    bh.setStatusText( game.result( ) );
-                }
-
-                else if( id == -2 )
-                {
-                    MainActivity.this.finish();
-                }
-            }
-        }
-
-*/
-
