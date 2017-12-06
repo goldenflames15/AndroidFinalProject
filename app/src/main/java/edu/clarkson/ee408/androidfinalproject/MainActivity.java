@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private quiz game;
     private sentance[] sentences;
     private Button b1, b2, b3, b4, b5;
+    private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 new sentance(sen5, pos5)
         };
 
-        String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};
+
 
         View.OnClickListener click = new View.OnClickListener()
         { //when any of the 4 main buttons are pressed
@@ -114,5 +115,52 @@ public class MainActivity extends AppCompatActivity {
         b3.setOnClickListener(click);
         b4.setOnClickListener(click);
         b5.setOnClickListener(playAgain);
+    }
+
+    private class boardSetter{
+        public void setBoard(){
+            sentance display = sentences[(int)Math.floor(Math.random()*4) + 0];
+            //R.id.sentence.setText(display.join());
+            //int checker = 0;
+            //int assigned = 1;
+            //String picker = " ";
+            //String POS[] = new String[];
+            //POS[0] = display[1][(game.pickWord(display))) + 0;
+            /*
+            while (assigned <= 3)
+            {
+                picker = assignedpos[(int)Math.floor(Math.random()*(assignedpos.length()-1)) + 0
+                if(POS[0] != picker)
+                    checker++;
+                if(POS[1] != picker)
+                    checker++;
+                if(POS[2] != picker)
+                    checker++;
+                if(POS[3] != picker)
+                    checker++;
+                if(checker == 4 )
+                    POS[assigned] = picker;
+                    checker = 0;
+                    assigned++;
+            }
+
+            while (assigned <= 3)
+            {
+                picker = POS[(int)Math.floor(Math.random()*3) + 0];
+                if(b1.getText().toString() != assigned)
+                    checker++;
+                if(b2.getText().toString() != assigned)
+                    checker++;
+                if(b3.getText().toString() != assigned)
+                    checker++;
+                if(b4.getText().toString() != assigned)
+                    checker++;
+                if(checker == 4 )
+                    b1[assigned] = picker;
+                    checker = 0;
+                    assigned++;
+            }
+            */
+        }
     }
 }

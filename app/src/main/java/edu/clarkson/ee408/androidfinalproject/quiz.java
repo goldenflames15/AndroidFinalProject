@@ -12,10 +12,10 @@ public class quiz
 
     public quiz(){};
 
-    public int pickWord(String sen)
+    public int pickWord(sentance sen)
      {
          int min = 0;
-         int max = sen.length();
+         int max = sen[0].length();
          return (int)Math.floor(Math.random()*max) + min;
      }
 
