@@ -14,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     private quiz game;
     private sentance[] sentences;
-    private Button b1, b2, b3, b4, b5;
-    private TextView t1;
+    private Button b1, b2, b3, b4, ng;
+    private TextView t1, cc, t2;
     private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};;
 
     @Override
@@ -30,8 +30,10 @@ public class MainActivity extends AppCompatActivity {
         b2 = (Button) findViewById(R.id.Button2);
         b3 = (Button) findViewById(R.id.Button3);
         b4 = (Button) findViewById(R.id.Button4);
-        b5 = (Button) findViewById(R.id.Button5);
+        ng = (Button) findViewById(R.id.newGame);
         t1= (TextView) findViewById(R.id.sentence);
+        cc= (TextView) findViewById(R.id.colorChange);
+        t2= (TextView) findViewById(R.id.word);
 
         String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
         String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective"};
@@ -71,12 +73,12 @@ public class MainActivity extends AppCompatActivity {
                 if (game.alertPlayer("", "") == 0) {
                     attempts = 0;
                     b.setBackgroundColor(Color.GREEN); //sets the button they pressed to green
-                    b5.setBackgroundColor(Color.GREEN); //sets the playAgain button to green, to show it's activated again
+                    ng.setBackgroundColor(Color.GREEN); //sets the playAgain button to green, to show it's activated again
                     b1.setEnabled(false);
                     b2.setEnabled(false);
                     b3.setEnabled(false);
                     b4.setEnabled(false);
-                    b5.setEnabled(true); //activates the playAgain button
+                    ng.setEnabled(true); //activates the playAgain button
                 }
 
                 else {
@@ -87,12 +89,12 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         attempts = 0;
                         b.setBackgroundColor(Color.RED);
-                        b5.setBackgroundColor(Color.GREEN);
+                        ng.setBackgroundColor(Color.GREEN);
                         b1.setEnabled(false);
                         b2.setEnabled(false);
                         b3.setEnabled(false);
                         b4.setEnabled(false);
-                        b5.setEnabled(true);
+                        ng.setEnabled(true);
                     }
                 }
             }
@@ -106,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 //When they push the play again button, this is where the stuff needs to be executed
 
 
-                b5.setBackgroundColor(Color.RED); //When they push the button,
-                b5.setEnabled(false);
+                ng.setBackgroundColor(Color.RED); //When they push the button,
+                ng.setEnabled(false);
             }
         };
 
@@ -117,17 +119,16 @@ public class MainActivity extends AppCompatActivity {
         b2.setOnClickListener(click);
         b3.setOnClickListener(click);
         b4.setOnClickListener(click);
-        b5.setOnClickListener(playAgain);
+        ng.setOnClickListener(playAgain);
     }
 
-    //We have to figure out how to highlight or underline only ONE word, or display the sentence and display the background over the chosen word
-    //or display the chosen word below/separate from the textview???
     private class boardSetter{
         public void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
             //otherwise it doesn't start the game correctly
             sentance display = sentences[(int)Math.floor(Math.random()*4) + 0];
             t1.setText(""); //**This is how you alter the text in the sentence textview
             //t1.setText(display.join());
+            b1.setText(""); //To set the answers b1-b4
 
 
             //int checker = 0;
