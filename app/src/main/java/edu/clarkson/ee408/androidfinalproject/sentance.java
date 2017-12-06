@@ -3,23 +3,6 @@ package edu.clarkson.ee408.androidfinalproject;
 /**
  * Created by Rancerle on 11/17/2017.
  *
- * Sentences:
- *
- * S1: 
- * P1:
- *
- * S2:
- * P2:
- *
- * S3:
- * P3:
- *
- * S4:
- * P4:
- *
- * S5:
- * P5:
- *
  *
  */
 
@@ -28,8 +11,15 @@ public class sentance {
 
     sentance (String[] words, String[] pos)
     {
-        sentence[0] = words;
-        sentence[1] = pos;
+        for (int i = 0; i < words.length; i++)
+        {
+            sentence[0][i] = words[i];
+        }
+
+        for (int i = 0; i < pos.length; i++)
+        {
+            sentence[1][i] = pos[i];
+        }
     }
 
     public String getSen()
@@ -49,7 +39,6 @@ public class sentance {
             }
 
         }
-
         return full;
     }
 

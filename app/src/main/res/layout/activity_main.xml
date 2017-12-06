@@ -9,24 +9,54 @@
     <TextView
         android:id="@+id/sentence"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="100dp"
         android:layout_above="@+id/Button1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="casual"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="21sp"
+        tools:text="sentence" />
+
+    <TextView
+        android:id="@+id/word"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="75dp"
         android:fontFamily="casual"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Text placeholder: "
+        android:text="question"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="24sp" />
 
+    <TextView
+        android:id="@+id/colorChange"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Button3"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:inputType="none"
+        android:text="                                                  " />
 
     <Button
         android:id="@+id/Button1"
         android:layout_width="190dp"
         android:layout_height="200dp"
-        android:layout_above="@+id/Button3"
+        android:layout_alignBottom="@+id/Button2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/word"
         android:background="@color/purple"
         android:fontFamily="casual"
         android:gravity="center"
@@ -41,7 +71,9 @@
         android:layout_height="200dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/sentence"
+        android:layout_below="@+id/word"
+        android:layout_toEndOf="@+id/Button1"
+        android:layout_toRightOf="@+id/Button1"
         android:background="@color/yellow"
         android:fontFamily="casual"
         android:gravity="center"
@@ -54,9 +86,9 @@
         android:id="@+id/Button3"
         android:layout_width="190dp"
         android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/Button1"
         android:background="@color/blu"
         android:fontFamily="casual"
         android:gravity="center"
@@ -69,9 +101,11 @@
         android:id="@+id/Button4"
         android:layout_width="190dp"
         android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/Button1"
+        android:layout_toEndOf="@+id/Button3"
+        android:layout_toRightOf="@+id/Button3"
         android:background="@color/orange"
         android:fontFamily="casual"
         android:gravity="center"
@@ -81,15 +115,17 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/Button5"
-        android:layout_width="match_parent"
+        android:id="@+id/newGame"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/sentence"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/Button4"
         android:layout_gravity="end"
         android:background="@color/colorAccent"
-        android:text="New Game -->     " />
-    </RelativeLayout>
+        android:text="    New Game -->     "
+        android:textAlignment="textEnd" />
+
+</RelativeLayout>
 
