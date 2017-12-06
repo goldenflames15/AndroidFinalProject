@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 /* https://nlp.stanford.edu/software/tagger.shtml#Download */
 //This is the Stanford parts of speech link
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private quiz game;
     private sentance[] sentences;
     private Button b1, b2, b3, b4, b5;
+    private TextView t1;
     private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};;
 
     @Override
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         b3 = (Button) findViewById(R.id.Button3);
         b4 = (Button) findViewById(R.id.Button4);
         b5 = (Button) findViewById(R.id.Button5);
+        t1= (TextView) findViewById(R.id.sentence);
 
         String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
         String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective"};
@@ -117,10 +120,16 @@ public class MainActivity extends AppCompatActivity {
         b5.setOnClickListener(playAgain);
     }
 
+    //We have to figure out how to highlight or underline only ONE word, or display the sentence and display the background over the chosen word
+    //or display the chosen word below/separate from the textview???
     private class boardSetter{
-        public void setBoard(){
+        public void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
+            //otherwise it doesn't start the game correctly
             sentance display = sentences[(int)Math.floor(Math.random()*4) + 0];
-            //R.id.sentence.setText(display.join());
+            t1.setText(""); //**This is how you alter the text in the sentence textview
+            //t1.setText(display.join());
+
+
             //int checker = 0;
             //int assigned = 1;
             //String picker = " ";
