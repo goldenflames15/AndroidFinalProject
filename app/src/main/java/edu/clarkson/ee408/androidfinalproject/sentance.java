@@ -11,11 +11,15 @@ public class sentance {
     public static String[] parts;
 
 
-    sentance(String[] words, String[] parts){
+    sentance(String[] newWords, String[] newParts){
+        System.out.println("function called");
         for (int i=0; i<=words.length; i++) {
-            words[i]=words[i];
-            parts[i]=parts[i];
+            words[i]=newWords[i];
+            System.out.println("word added");
+            parts[i]=newParts[i];
+            System.out.println("POS added");
         }
+        System.out.println("sentence added");
     }
 
     public static String[] getFull(sentance sen){
