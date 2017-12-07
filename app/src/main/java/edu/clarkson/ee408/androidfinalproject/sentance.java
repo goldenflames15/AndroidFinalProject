@@ -18,6 +18,14 @@ public class sentance {
         }
     }
 
+    public static String[] getFull(sentance sen){
+        return sen.words;
+    }
+
+    public static String[] getPOS(sentance sen){
+        return sen.parts;
+    }
+
     public static String getWord(String[] sen) {
         String word = "";
         int min = 0;
@@ -58,79 +66,19 @@ public class sentance {
             return full;
         }
 
-
-/*
-    sentance (String[] words, String[] pos)
-    {
-        for (int i = 0; i < words.length; i++)
-        {
-            sentence[0][i] = words[i];
-        }
-
-        for (int i = 0; i < pos.length; i++)
-        {
-            sentence[1][i] = pos[i];
-        }
-    }
-
-    public String getSen()
-    {
-        String full = "";
-
-        for (int i = 0; i < sentence[0].length; i++)
-        {
-            if(i < sentence[0].length)
-            {
-                full+= sentence[0][i] + " ";
-            }
-
-            else
-            {
-                full+= sentence[0][i];
-            }
-
-        }
-        return full;
-    }
-
-
-/*
-    public int pickWordPos(String[] sen) //Does this need to be sen[]
-    {
-
-        return ;
-    }
-
-
-/*
-    public int alertPlayer(String Pos1, String Pos2)
-    {
-
-        if(checkPos(Pos1, Pos2))
-        {
-            return 0;
-        }
-
-        else
-        {
-            return 1;
-        }
-    }
-
     public static boolean checkPos(String word, String part)
     {
         int index = 0;
 
-        for (int i = 0; i < sentence[0].length; i++)
+        for (int i = 0; i < words.length; i++)
         {
-            if(sentence[0][i] == word)
+            if(words[i] == word)
             {
                 index = i;
                 break;
             }
         }
 
-        return part == sentence[1][index];
+        return part == words[index];
     }
-    */
 }
