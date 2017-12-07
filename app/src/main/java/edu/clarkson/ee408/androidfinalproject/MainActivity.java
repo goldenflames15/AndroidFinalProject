@@ -57,14 +57,14 @@ public class MainActivity extends AppCompatActivity {
         String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "adjective", "adjective", "noun"};
 
         sentences = new sentance[]
-        {
-                new sentance(sen0, pos0),
-                new sentance(sen1, pos1),
-                new sentance(sen2, pos2),
-                new sentance(sen3, pos3),
-                new sentance(sen4, pos4),
-                new sentance(sen5, pos5)
-        };
+                {
+                        new sentance(sen0, pos0),
+                        new sentance(sen1, pos1),
+                        new sentance(sen2, pos2),
+                        new sentance(sen3, pos3),
+                        new sentance(sen4, pos4),
+                        new sentance(sen5, pos5)
+                };
         //boardSetter.setBoard();
         sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
         String chosenWord = sentance.getWord(chosenSentence.words);
@@ -103,15 +103,15 @@ public class MainActivity extends AppCompatActivity {
                         b.setEnabled(false); //disables wrong choice
                         //change cc
                     } else */ { //their last chance
-                        b.setBackgroundColor(Color.RED);
-                        ng.setBackgroundColor(Color.GREEN); //activates new game
-                        b1.setEnabled(false);
-                        b2.setEnabled(false);
-                        b3.setEnabled(false);
-                        b4.setEnabled(false);
-                        ng.setEnabled(true);
-                    }
+                    b.setBackgroundColor(Color.RED);
+                    ng.setBackgroundColor(Color.GREEN); //activates new game
+                    b1.setEnabled(false);
+                    b2.setEnabled(false);
+                    b3.setEnabled(false);
+                    b4.setEnabled(false);
+                    ng.setEnabled(true);
                 }
+            }
         };
 
         View.OnClickListener playAgain = new View.OnClickListener()
