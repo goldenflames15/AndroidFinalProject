@@ -10,14 +10,7 @@ import java.lang.Math;
 public class quiz
 {
 
-    public quiz(){};
-
-    public int pickWord(sentance sen) //Does this need to be sen[]
-     {
-         int min = 0;
-         int max = sen[0].length(); //Error????
-         return (int)Math.floor(Math.random()*max) + min;
-     }
+    public quiz(){}
 
 
     public int alertPlayer(String Pos1, String Pos2)

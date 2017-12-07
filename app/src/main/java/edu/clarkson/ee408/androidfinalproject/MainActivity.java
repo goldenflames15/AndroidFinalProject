@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private sentance[] sentences;
     private Button b1, b2, b3, b4, ng;
     private TextView t1, cc, t2;
+    private boardSetter setsBoard;
     private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};;
 
     @Override
@@ -79,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
                     b3.setEnabled(false);
                     b4.setEnabled(false);
                     ng.setEnabled(true); //activates the playAgain button
+                    cc.setBackgroundColor(Color.GREEN);
+
                 }
 
                 else {
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                         attempts = 0;
                         b.setBackgroundColor(Color.RED);
                         ng.setBackgroundColor(Color.GREEN);
+                        cc.setBackgroundColor(Color.GREEN);
                         b1.setEnabled(false);
                         b2.setEnabled(false);
                         b3.setEnabled(false);
@@ -106,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Button b = (Button) v;
                 //When they push the play again button, this is where the stuff needs to be executed
-
-
+                setsBoard.setBoard();
                 ng.setBackgroundColor(Color.RED); //When they push the button,
                 ng.setEnabled(false);
+                cc.setBackgroundColor(Color.RED);
             }
         };
 
@@ -123,23 +127,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class boardSetter{
-        public void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
+        public  void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
             //otherwise it doesn't start the game correctly
             sentance display = sentences[(int)Math.floor(Math.random()*4) + 0];
             t1.setText(""); //**This is how you alter the text in the sentence textview
-            //t1.setText(display.join());
+            t1.setText(display.getSen());
             b1.setText(""); //To set the answers b1-b4
 
 
-            //int checker = 0;
-            //int assigned = 1;
-            //String picker = " ";
-            //String POS[] = new String[];
-            //POS[0] = display[1][(game.pickWord(display))) + 0;
-            /*
+            int checker = 0;
+            int assigned = 1;
+            int indexChosen = (int)Math.floor(Math.random()*(display[0].length()-1)) + 0;
+            String picker = " ";
+            String POS[] = new String[4];
+            POS[0] = display[1][indexChosen];
+            t2.setText(display[0][indexChosen]);
+
             while (assigned <= 3)
             {
-                picker = assignedpos[(int)Math.floor(Math.random()*(assignedpos.length()-1)) + 0
+                picker = assignedPos[(int)Math.floor(Math.random()*(7)) + 0];
                 if(POS[0] != picker)
                     checker++;
                 if(POS[1] != picker)
@@ -154,23 +160,81 @@ public class MainActivity extends AppCompatActivity {
                     assigned++;
             }
 
-            while (assigned <= 3)
+            while (assigned < 1)
             {
                 picker = POS[(int)Math.floor(Math.random()*3) + 0];
-                if(b1.getText().toString() != assigned)
+                if(b1.getText().toString() != picker)
                     checker++;
-                if(b2.getText().toString() != assigned)
+                if(b2.getText().toString() != picker)
                     checker++;
-                if(b3.getText().toString() != assigned)
+                if(b3.getText().toString() != picker)
                     checker++;
-                if(b4.getText().toString() != assigned)
+                if(b4.getText().toString() != picker)
                     checker++;
                 if(checker == 4 )
-                    b1[assigned] = picker;
+                {
+                    b1.setText(picker);
                     checker = 0;
                     assigned++;
+                }
             }
-            */
+
+            while (assigned < 2)
+            {
+                picker = POS[(int)Math.floor(Math.random()*3) + 0];
+                if(b1.getText().toString() != picker)
+                    checker++;
+                if(b2.getText().toString() != picker)
+                    checker++;
+                if(b3.getText().toString() != picker)
+                    checker++;
+                if(b4.getText().toString() != picker)
+                    checker++;
+                if(checker == 4 )
+                {
+                    b2.setText(picker);
+                    checker = 0;
+                    assigned++;
+                }
+            }
+
+            while (assigned < 3)
+            {
+                picker = POS[(int)Math.floor(Math.random()*3) + 0];
+                if(b1.getText().toString() != picker)
+                    checker++;
+                if(b2.getText().toString() != picker)
+                    checker++;
+                if(b3.getText().toString() != picker)
+                    checker++;
+                if(b4.getText().toString() != picker)
+                    checker++;
+                if(checker == 4 )
+                {
+                    b3.setText(picker);
+                    checker = 0;
+                    assigned++;
+                }
+            }
+
+            while (assigned < 4)
+            {
+                picker = POS[(int)Math.floor(Math.random()*3) + 0];
+                if(b1.getText().toString() != picker)
+                    checker++;
+                if(b2.getText().toString() != picker)
+                    checker++;
+                if(b3.getText().toString() != picker)
+                    checker++;
+                if(b4.getText().toString() != picker)
+                    checker++;
+                if(checker == 4 )
+                {
+                    b4.setText(picker);
+                    checker = 0;
+                    assigned++;
+                }
+            }
         }
     }
 }
