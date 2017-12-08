@@ -6,50 +6,31 @@ package edu.clarkson.ee408.androidfinalproject;
  *
  */
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
 public class sentance {
-    static int MAX_SENTENCE_SIZE = 10;
-    private static String[] words = new String[MAX_SENTENCE_SIZE];
-    private static String[] parts = new String[MAX_SENTENCE_SIZE];
-//private static String[] words;
-//private static String[] parts;
+    public static String[] words ;
+    public static String[] parts;
 
-    sentance(String[] newWords, String[] newParts){
-        System.out.println("function called");
-        int length = newParts.length;
-        for (int i=0; i<length-1; i++) {
-            words[i]=newWords[i];
-            System.out.println("word added");
-            parts[i]=newParts[i];
-            System.out.println("POS added");
+
+    sentance(String[] words, String[] parts){
+        for (int i=0; i<=words.length; i++) {
+            words[i]=words[i];
+            parts[i]=parts[i];
         }
-        System.out.println("sentence added");
     }
 
-    public static String[] getFull(sentance sen){
-        return sen.words;
-    } //This is named badly, it should be like getWordsArray, since fullSentence returns the actual sentence as one string
-
-    public static String[] getPOS(sentance sen){
-        return sen.parts;
-    }
-
-    public static String getWord(String[] sen) { //Chooses a random word
+    public static String getWord(String[] sen) {
         String word = "";
         int min = 0;
-        int max = sen.length;
+        int max = sen[0].length();
         word = sen[(int) Math.floor(Math.random() * max) + min];
         return word;
     }
 
     public static String getWordsPart(String[] w, String[] p, String word){
         int index=0;
-        for(int i=0; i<=w.length-1;i++)
+        for(int i=0; i<=w.length;i++)
         {
-            if (word.equals(w[i]))
+            if (w[i]==word)
             {
                 index =i;
             }
@@ -57,24 +38,84 @@ public class sentance {
         return p[index];
     }
 
-        public static String fullSentence(String[] sen)
-        {
-            return String.join(" ", sen);
-        }
-
-    public static boolean checkPos(String word, String part) //this doesn't work?
+    public static String fullSentence(String[] sen)
     {
-        int index = 0;
+        String full = "";
 
+        for (int i = 0; i < sen.length; i++)
+        {
+            if(i < sen.length)
+            {
+                full+= sen[i] + " ";
+            }
+
+            else
+            {
+                full+= sen[i];
+            }
+
+        }
+        return full;
+    }
+
+
+/*
+    sentance (String[] words, String[] pos)
+    {
         for (int i = 0; i < words.length; i++)
         {
-            if(words[i].equals(word))
+            sentence[0][i] = words[i];
+        }
+        for (int i = 0; i < pos.length; i++)
+        {
+            sentence[1][i] = pos[i];
+        }
+    }
+    public String getSen()
+    {
+        String full = "";
+        for (int i = 0; i < sentence[0].length; i++)
+        {
+            if(i < sentence[0].length)
+            {
+                full+= sentence[0][i] + " ";
+            }
+            else
+            {
+                full+= sentence[0][i];
+            }
+        }
+        return full;
+    }
+/*
+    public int pickWordPos(String[] sen) //Does this need to be sen[]
+    {
+        return ;
+    }
+/*
+    public int alertPlayer(String Pos1, String Pos2)
+    {
+        if(checkPos(Pos1, Pos2))
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    public static boolean checkPos(String word, String part)
+    {
+        int index = 0;
+        for (int i = 0; i < sentence[0].length; i++)
+        {
+            if(sentence[0][i] == word)
             {
                 index = i;
                 break;
             }
         }
-
-        return part.equals(words[index]);
+        return part == sentence[1][index];
     }
+    */
 }
