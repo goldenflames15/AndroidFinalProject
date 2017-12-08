@@ -17,13 +17,13 @@ public class MainActivity extends AppCompatActivity {
     private boardSetter setsBoard;
     private Button b1, b2, b3, b4, ng;
     private TextView t1, cc, t2;
-    private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};;
+    private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};
     private int attempts = 0;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.trying_something);
+        setContentView(R.layout.activity_main);
 
         game = new quiz();
         setsBoard= new boardSetter();
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         t2= (TextView) findViewById(R.id.word);
 
         String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
-        String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective"};
+        String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective, verb, adjective"};
 
         System.out.println("sen1");
 
@@ -143,9 +143,12 @@ public class MainActivity extends AppCompatActivity {
         public  void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
             //otherwise it doesn't start the game correctly
             System.out.println("entered board setter");
-            int random=(int)Math.floor(Math.random()*4);
+            int random=(int)Math.floor(Math.random()*5);
             System.out.println("random sentence chosen="+random);
-            sentance display = sentences[random];
+            sentance display=sentences[2];
+            //sentance display = sentences[random]; //this isn't getting a random sentence, it always returns the last one
+            String testDisplay = display.fullSentence(display.getFull(display));
+            System.out.println(testDisplay);
             t1.setText(""); //**This is how you alter the text in the sentence textview
             t1.setText(display.fullSentence(display.getFull(display)));
             b1.setText(""); //To set the answers b1-b4
@@ -155,19 +158,23 @@ public class MainActivity extends AppCompatActivity {
 
             int checker = 0;
             int assigned = 1;
-            //int indexChosen = (int)Math.floor(Math.random()*(display.getFull(display).length));
+            int indexChosen = (int)Math.floor(Math.random()*(display.getFull(display).length));
             String picker = " ";
             String POS[] = {"", "", "", ""};
-            String chosenWord = display.getWord(display.getFull(display)); //chooses a random word
+            //String chosenWord = display.getWord(display.getFull(display)); //chooses a random word
+            String[] displaySentence = display.getFull(display);
+            String[] displayPOS = display.getPOS(display);
+            String chosenWord = displaySentence[indexChosen];
+            POS[0]= displayPOS[indexChosen];
             System.out.println("random word is: "+ chosenWord);
-            POS[0] = display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord); //puts the correct answer in the first slot
+            //POS[0] = display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord); //puts the correct answer in the first slot
 
             //t2.setText(display.getPOS(display)[indexChosen]); //this was trying to show the user the part of speech, not the word
             //t2.setText(display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord));
             t2.setText(chosenWord);
             while (assigned <= 3) //initialises the array of parts of speach with the three randos
             {
-                picker = assignedPos[(int)Math.floor(Math.random()*(8))];
+                picker = assignedPos[(int)Math.floor(Math.random()*(7))];
                 if(!POS[0].equals(picker)) //only allows a POS to be assigned if it has not been already
                     checker++;
                 if(!POS[1].equals(picker))

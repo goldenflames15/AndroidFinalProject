@@ -20,9 +20,9 @@ public class sentance {
     sentance(String[] newWords, String[] newParts){
         System.out.println("function called");
         int length = newParts.length;
-        for (int i=0; i<length-1; i++) {
+        for (int i=0; i<length; i++) {
             words[i]=newWords[i];
-            System.out.println("word added");
+            System.out.println("word added: " + newWords[i]);
             parts[i]=newParts[i];
             System.out.println("POS added");
         }
@@ -37,6 +37,7 @@ public class sentance {
         return sen.parts;
     }
 
+    /*
     public static String getWord(String[] sen) { //Chooses a random word
         String word = "";
         int min = 0;
@@ -56,8 +57,8 @@ public class sentance {
         }
         return p[index];
     }
-
-        public static String fullSentence(String[] sen)
+*/
+    public static String fullSentence(String[] sen)
         {
             return String.join(" ", sen);
         }
