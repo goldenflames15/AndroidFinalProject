@@ -6,6 +6,10 @@ package edu.clarkson.ee408.androidfinalproject;
  *
  */
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 public class sentance {
     static int MAX_SENTENCE_SIZE = 10;
     private static String[] words = new String[MAX_SENTENCE_SIZE];
@@ -55,27 +59,7 @@ public class sentance {
 
         public static String fullSentence(String[] sen)
         {
-            String full = "";
-            StringBuilder build;
-
-            for (int i = 0; i < sen.length-1; i++)
-            {
-                if(i < sen.length)
-                {
-
-                    full= full + (sen[i] + " "); //use StringBuilder.append ??? using += appends the entire thing onto the end again apparently
-                    //+= and + copy the entire thing onto the end EVERY TIME
-                    //THIS NEEDS TO BE FIXED
-                    //I DON'T GET IT
-                }
-
-                else
-                {
-                    full= full + sen[i];
-                }
-
-            }
-            return full;
+            return String.join(" ", sen);
         }
 
     public static boolean checkPos(String word, String part) //this doesn't work?

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "edu.clarkson.ee408.androidfinalproject"
-        minSdkVersion 15
+        minSdkVersion 26
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"

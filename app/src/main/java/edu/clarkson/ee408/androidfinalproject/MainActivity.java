@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private Button b1, b2, b3, b4, ng;
     private TextView t1, cc, t2;
     private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};;
-
+    private int attempts = 0;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,11 +77,13 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("board made");
 
+
+
         View.OnClickListener click = new View.OnClickListener()
         { //when any of the 4 main buttons are pressed
             @Override
             public void onClick(View v) {
-                int attempts = 0;
+
                 Button b = (Button) v; //b is the answer the player selected
                 String word = "";
                 word = b.getText().toString();
