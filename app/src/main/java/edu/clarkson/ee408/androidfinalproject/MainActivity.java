@@ -62,14 +62,19 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("sen5");
 
-        sentences = new sentance[]
-                {
+        sentences = new sentance[5];
+        sentences[0]= new sentance(sen1,pos1);
+        sentences[1]= new sentance(sen2,pos2);
+        sentences[2]= new sentance(sen3,pos3);
+        sentences[3]=new sentance(sen4,pos4);
+        sentences[4]=new sentance(sen5,pos5);
+               /* {
                         new sentance(sen1, pos1),
                         new sentance(sen2, pos2),
                         new sentance(sen3, pos3),
                         new sentance(sen4, pos4),
                         new sentance(sen5, pos5)
-                };
+                }; */
 
         System.out.println("Array made");
 
@@ -145,19 +150,20 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("entered board setter");
             int random=(int)Math.floor(Math.random()*5);
             System.out.println("random sentence chosen="+random);
-            sentance display=sentences[2];
+            sentance display=sentences[random];
             //sentance display = sentences[random]; //this isn't getting a random sentence, it always returns the last one
             String testDisplay = display.fullSentence(display.getFull(display));
             System.out.println(testDisplay);
-            t1.setText(""); //**This is how you alter the text in the sentence textview
-            t1.setText(display.fullSentence(display.getFull(display)));
-            b1.setText(""); //To set the answers b1-b4
-            b2.setText(""); //To set the answers b1-b4
-            b3.setText(""); //To set the answers b1-b4
-            b4.setText(""); //To set the answers b1-b4
+            t1.setText(testDisplay);
+            //t1.setText(""); //**This is how you alter the text in the sentence textview
+           // t1.setText(display.fullSentence(display.getFull(display)));
+            //b1.setText(""); //To set the answers b1-b4
+            //b2.setText(""); //To set the answers b1-b4
+           // b3.setText(""); //To set the answers b1-b4
+           // b4.setText(""); //To set the answers b1-b4
 
             int checker = 0;
-            int assigned = 1;
+            int assigned = 0;
             int indexChosen = (int)Math.floor(Math.random()*(display.getFull(display).length));
             String picker = " ";
             String POS[] = {"", "", "", ""};
@@ -172,10 +178,11 @@ public class MainActivity extends AppCompatActivity {
             //t2.setText(display.getPOS(display)[indexChosen]); //this was trying to show the user the part of speech, not the word
             //t2.setText(display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord));
             t2.setText(chosenWord);
+            /*
             while (assigned <= 3) //initialises the array of parts of speach with the three randos
             {
-                picker = assignedPos[(int)Math.floor(Math.random()*(7))];
-                if(!POS[0].equals(picker)) //only allows a POS to be assigned if it has not been already
+                picker = assignedPos[(int)Math.floor(Math.random()*(7))];//only allows a POS to be assigned if it has not been already
+                if(!POS[0].equals(picker)) //***THIS LINE CAUSES CRASH? NULL OBJECT REFERENCE SOMETIMES***
                     checker++;
                 if(!POS[1].equals(picker))
                     checker++;
@@ -269,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                     checker = 0;
                     assigned++;
                 }
-            }
+            }*/
         }
     }
 }
