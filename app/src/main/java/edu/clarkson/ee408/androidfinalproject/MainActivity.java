@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.trying_something);
 
         game = new quiz();
         setsBoard= new boardSetter();
@@ -84,9 +84,10 @@ public class MainActivity extends AppCompatActivity {
                 Button b = (Button) v; //b is the answer the player selected
                 String word = "";
                 word = b.getText().toString();
+                //need to check words part with their choices part
                 String correct = t2.getText().toString();
 
-                if (game.alertPlayer( word, correct) == 0) {
+                if (game.alertPlayer(word, correct) == 0) { //this isn't actually checking if they are right
                     attempts = 0;
                     b.setBackgroundColor(Color.GREEN); //sets the button they pressed to green
                     ng.setBackgroundColor(Color.GREEN); //sets the playAgain button to green, to show it's activated again
@@ -138,7 +139,10 @@ public class MainActivity extends AppCompatActivity {
     private class boardSetter{
         public  void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
             //otherwise it doesn't start the game correctly
-            sentance display = sentences[(int)Math.floor(Math.random()*4)];
+            System.out.println("entered board setter");
+            int random=(int)Math.floor(Math.random()*4);
+            System.out.println("random sentence chosen="+random);
+            sentance display = sentences[random];
             t1.setText(""); //**This is how you alter the text in the sentence textview
             t1.setText(display.fullSentence(display.getFull(display)));
             b1.setText(""); //To set the answers b1-b4
@@ -150,11 +154,13 @@ public class MainActivity extends AppCompatActivity {
             int assigned = 1;
             //int indexChosen = (int)Math.floor(Math.random()*(display.getFull(display).length));
             String picker = " ";
-            //String POS[] = new String[4];
             String POS[] = {"", "", "", ""};
-            String chosenWord = display.getWord(display.getFull(display)); //chooses a word
+            String chosenWord = display.getWord(display.getFull(display)); //chooses a random word
+            System.out.println("random word is: "+ chosenWord);
             POS[0] = display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord); //puts the correct answer in the first slot
-            //t2.setText(display.getPOS(display)[indexChosen]);
+
+            //t2.setText(display.getPOS(display)[indexChosen]); //this was trying to show the user the part of speech, not the word
+            //t2.setText(display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord));
             t2.setText(chosenWord);
             while (assigned <= 3) //initialises the array of parts of speach with the three randos
             {
@@ -177,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
             while (assigned < 1)
             {
-                picker = POS[(int)Math.floor(Math.random()*4)];
+                picker = POS[(int)Math.floor(Math.random()*3)];
                 if(!b1.getText().toString().equals(picker)) //only allows the POS to be assigned from the array if it hasn't already
                     checker++;
                 if(!b2.getText().toString().equals(picker))
@@ -197,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
             while (assigned < 2)
             {
-                picker = POS[(int)Math.floor(Math.random()*4)];
+                picker = POS[(int)Math.floor(Math.random()*3)];
                 if(!b1.getText().toString().equals(picker))
                     checker++;
                 if(!b2.getText().toString().equals(picker))
@@ -217,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
 
             while (assigned < 3)
             {
-                picker = POS[(int)Math.floor(Math.random()*4)];
+                picker = POS[(int)Math.floor(Math.random()*3)];
                 if(!b1.getText().toString().equals(picker))
                     checker++;
                 if(!b2.getText().toString().equals(picker))
@@ -237,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
 
             while (assigned < 4)
             {
-                picker = POS[(int)Math.floor(Math.random()*4)];
+                picker = POS[(int)Math.floor(Math.random()*3)];
                 if(!b1.getText().toString().equals(picker))
                     checker++;
                 if(!b2.getText().toString().equals(picker))

@@ -7,13 +7,16 @@ package edu.clarkson.ee408.androidfinalproject;
  */
 
 public class sentance {
-    static int MAX_SENTENCE_SIZE = 15;
+    static int MAX_SENTENCE_SIZE = 10;
     private static String[] words = new String[MAX_SENTENCE_SIZE];
     private static String[] parts = new String[MAX_SENTENCE_SIZE];
+//private static String[] words;
+//private static String[] parts;
 
     sentance(String[] newWords, String[] newParts){
         System.out.println("function called");
-        for (int i=0; i<newParts.length-1; i++) {
+        int length = newParts.length;
+        for (int i=0; i<length-1; i++) {
             words[i]=newWords[i];
             System.out.println("word added");
             parts[i]=newParts[i];
@@ -33,7 +36,7 @@ public class sentance {
     public static String getWord(String[] sen) { //Chooses a random word
         String word = "";
         int min = 0;
-        int max = sen[0].length();
+        int max = sen.length;
         word = sen[(int) Math.floor(Math.random() * max) + min];
         return word;
     }
@@ -75,11 +78,11 @@ public class sentance {
             return full;
         }
 
-    public static boolean checkPos(String word, String part)
+    public static boolean checkPos(String word, String part) //this doesn't work?
     {
         int index = 0;
 
-        for (int i = 0; i < words.length-1; i++)
+        for (int i = 0; i < words.length; i++)
         {
             if(words[i].equals(word))
             {
