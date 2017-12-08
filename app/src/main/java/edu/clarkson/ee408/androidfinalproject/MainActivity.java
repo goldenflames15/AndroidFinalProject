@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-        game = new quiz();
 
+        game = new quiz();
+        setsBoard= new boardSetter();
         //Declaring buttons
         b1 = (Button) findViewById(R.id.Button1);
         b2 = (Button) findViewById(R.id.Button2);
@@ -96,9 +96,8 @@ public class MainActivity extends AppCompatActivity {
                     b4.setEnabled(false);
                     ng.setEnabled(true); //activates the playAgain button
                 }
-
                 else {
-                    if (attempts == 0) {
+                    if (attempts == 0) { //this will always be 0, turns broken, needs to be fixed
                         attempts++;
                         b.setBackgroundColor(Color.RED);
                         b.setEnabled(false);
@@ -128,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-
         //These make things happen when the buttons are pressed, functions and such
         b1.setOnClickListener(click);
         b2.setOnClickListener(click);
@@ -140,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     private class boardSetter{
         public  void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
             //otherwise it doesn't start the game correctly
-            sentance display = sentences[(int)Math.floor(Math.random()*4) + 0];
+            sentance display = sentences[(int)Math.floor(Math.random()*4)];
             t1.setText(""); //**This is how you alter the text in the sentence textview
             t1.setText(display.fullSentence(display.getFull(display)));
             b1.setText(""); //To set the answers b1-b4
@@ -148,25 +146,26 @@ public class MainActivity extends AppCompatActivity {
             b3.setText(""); //To set the answers b1-b4
             b4.setText(""); //To set the answers b1-b4
 
-
             int checker = 0;
             int assigned = 1;
-            int indexChosen = (int)Math.floor(Math.random()*(display.getFull(display).length)) + 0;
+            //int indexChosen = (int)Math.floor(Math.random()*(display.getFull(display).length));
             String picker = " ";
-            String POS[] = new String[4];
-            POS[0] = display.getPOS(display)[indexChosen]; //puts the correct answer in the first slot
-            t2.setText(display.getPOS(display)[indexChosen]);
-
+            //String POS[] = new String[4];
+            String POS[] = {"", "", "", ""};
+            String chosenWord = display.getWord(display.getFull(display)); //chooses a word
+            POS[0] = display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord); //puts the correct answer in the first slot
+            //t2.setText(display.getPOS(display)[indexChosen]);
+            t2.setText(chosenWord);
             while (assigned <= 3) //initialises the array of parts of speach with the three randos
             {
-                picker = assignedPos[(int)Math.floor(Math.random()*(8)) + 0];
-                if(POS[0] != picker) //only allows a POS to be assigned if it has not been already
+                picker = assignedPos[(int)Math.floor(Math.random()*(8))];
+                if(!POS[0].equals(picker)) //only allows a POS to be assigned if it has not been already
                     checker++;
-                if(POS[1] != picker)
+                if(!POS[1].equals(picker))
                     checker++;
-                if(POS[2] != picker)
+                if(!POS[2].equals(picker))
                     checker++;
-                if(POS[3] != picker)
+                if(!POS[3].equals(picker))
                     checker++;
                 if(checker == 4 ) {
                     POS[assigned] = picker;
@@ -174,19 +173,18 @@ public class MainActivity extends AppCompatActivity {
                     assigned++;
                 }
             }
-
             assigned = 0;
 
             while (assigned < 1)
             {
-                picker = POS[(int)Math.floor(Math.random()*4) + 0];
-                if(b1.getText().toString() != picker) //only allows the POS to be assigned from the array if it hasn't already
+                picker = POS[(int)Math.floor(Math.random()*4)];
+                if(!b1.getText().toString().equals(picker)) //only allows the POS to be assigned from the array if it hasn't already
                     checker++;
-                if(b2.getText().toString() != picker)
+                if(!b2.getText().toString().equals(picker))
                     checker++;
-                if(b3.getText().toString() != picker)
+                if(!b3.getText().toString().equals(picker))
                     checker++;
-                if(b4.getText().toString() != picker)
+                if(!b4.getText().toString().equals(picker))
                     checker++;
                 if(checker == 4 )
                 {
@@ -199,14 +197,14 @@ public class MainActivity extends AppCompatActivity {
 
             while (assigned < 2)
             {
-                picker = POS[(int)Math.floor(Math.random()*4) + 0];
-                if(b1.getText().toString() != picker)
+                picker = POS[(int)Math.floor(Math.random()*4)];
+                if(!b1.getText().toString().equals(picker))
                     checker++;
-                if(b2.getText().toString() != picker)
+                if(!b2.getText().toString().equals(picker))
                     checker++;
-                if(b3.getText().toString() != picker)
+                if(!b3.getText().toString().equals(picker))
                     checker++;
-                if(b4.getText().toString() != picker)
+                if(!b4.getText().toString().equals(picker))
                     checker++;
                 if(checker == 4 )
                 {
@@ -219,14 +217,14 @@ public class MainActivity extends AppCompatActivity {
 
             while (assigned < 3)
             {
-                picker = POS[(int)Math.floor(Math.random()*4) + 0];
-                if(b1.getText().toString() != picker)
+                picker = POS[(int)Math.floor(Math.random()*4)];
+                if(!b1.getText().toString().equals(picker))
                     checker++;
-                if(b2.getText().toString() != picker)
+                if(!b2.getText().toString().equals(picker))
                     checker++;
-                if(b3.getText().toString() != picker)
+                if(!b3.getText().toString().equals(picker))
                     checker++;
-                if(b4.getText().toString() != picker)
+                if(!b4.getText().toString().equals(picker))
                     checker++;
                 if(checker == 4 )
                 {
@@ -239,14 +237,14 @@ public class MainActivity extends AppCompatActivity {
 
             while (assigned < 4)
             {
-                picker = POS[(int)Math.floor(Math.random()*4) + 0];
-                if(b1.getText().toString() != picker)
+                picker = POS[(int)Math.floor(Math.random()*4)];
+                if(!b1.getText().toString().equals(picker))
                     checker++;
-                if(b2.getText().toString() != picker)
+                if(!b2.getText().toString().equals(picker))
                     checker++;
-                if(b3.getText().toString() != picker)
+                if(!b3.getText().toString().equals(picker))
                     checker++;
-                if(b4.getText().toString() != picker)
+                if(!b4.getText().toString().equals(picker))
                     checker++;
                 if(checker == 4 )
                 {

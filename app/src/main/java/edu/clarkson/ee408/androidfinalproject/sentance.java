@@ -7,13 +7,13 @@ package edu.clarkson.ee408.androidfinalproject;
  */
 
 public class sentance {
-    public static String[] words ;
-    public static String[] parts;
-
+    static int MAX_SENTENCE_SIZE = 15;
+    private static String[] words = new String[MAX_SENTENCE_SIZE];
+    private static String[] parts = new String[MAX_SENTENCE_SIZE];
 
     sentance(String[] newWords, String[] newParts){
         System.out.println("function called");
-        for (int i=0; i<=words.length; i++) {
+        for (int i=0; i<newParts.length-1; i++) {
             words[i]=newWords[i];
             System.out.println("word added");
             parts[i]=newParts[i];
@@ -24,13 +24,13 @@ public class sentance {
 
     public static String[] getFull(sentance sen){
         return sen.words;
-    }
+    } //This is named badly, it should be like getWordsArray, since fullSentence returns the actual sentence as one string
 
     public static String[] getPOS(sentance sen){
         return sen.parts;
     }
 
-    public static String getWord(String[] sen) {
+    public static String getWord(String[] sen) { //Chooses a random word
         String word = "";
         int min = 0;
         int max = sen[0].length();
@@ -40,9 +40,9 @@ public class sentance {
 
     public static String getWordsPart(String[] w, String[] p, String word){
         int index=0;
-        for(int i=0; i<=w.length;i++)
+        for(int i=0; i<=w.length-1;i++)
         {
-            if (w[i]==word)
+            if (word.equals(w[i]))
             {
                 index =i;
             }
@@ -53,17 +53,22 @@ public class sentance {
         public static String fullSentence(String[] sen)
         {
             String full = "";
+            StringBuilder build;
 
-            for (int i = 0; i < sen.length; i++)
+            for (int i = 0; i < sen.length-1; i++)
             {
                 if(i < sen.length)
                 {
-                    full+= sen[i] + " ";
+
+                    full= full + (sen[i] + " "); //use StringBuilder.append ??? using += appends the entire thing onto the end again apparently
+                    //+= and + copy the entire thing onto the end EVERY TIME
+                    //THIS NEEDS TO BE FIXED
+                    //I DON'T GET IT
                 }
 
                 else
                 {
-                    full+= sen[i];
+                    full= full + sen[i];
                 }
 
             }
@@ -74,15 +79,15 @@ public class sentance {
     {
         int index = 0;
 
-        for (int i = 0; i < words.length; i++)
+        for (int i = 0; i < words.length-1; i++)
         {
-            if(words[i] == word)
+            if(words[i].equals(word))
             {
                 index = i;
                 break;
             }
         }
 
-        return part == words[index];
+        return part.equals(words[index]);
     }
 }
