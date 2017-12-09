@@ -174,18 +174,14 @@ public class MainActivity extends AppCompatActivity {
             
             System.out.print(chosenSentence.fullSentence(chosenSentence.getFull(chosenSentence)));
             int indexChosen = (int)Math.floor(Math.random()*(chosenSentence.getFull(chosenSentence).length));
+            System.out.print("index chosen= " +indexChosen);
 
-            // String chosenWord = sentance.getWord(chosenSentence.words);
-            //String chosenPart ="";
+            t1.setText(sentance.fullSentence(chosenSentence.getFull(chosenSentence))); //displays the sentence to the user
+            t2.setText(chosenSentence.getFull(chosenSentence)[indexChosen]); //displays the word to the user
 
-           t1.setText(sentance.fullSentence(chosenSentence.getFull(chosenSentence))); //displays the sentence to the user
-           t2.setText(chosenSentence.getFull(chosenSentence)[indexChosen]); //displays the word to the user
-
-            int checker = 0;
-            int assigned = -1;
-            String picker = " ";
             String POS[] = new String[4];
             POS[0] = chosenSentence.getPOS(chosenSentence)[indexChosen]; //sets the correct POS in the POS array
+            System.out.print("part of speech chosen= " +POS[0]);
 
             while(assignedPos[0].equals(POS[0]) || assignedPos[1].equals(POS[0]) || assignedPos[2].equals(POS[0]))
             {
@@ -205,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
             ng.setEnabled(false);
             ng.setBackgroundColor(Color.RED);
-            cc.setBackgroundColor(Color.GREEN);
+            //cc.setBackgroundColor(Color.GREEN);
         }
     }
 }

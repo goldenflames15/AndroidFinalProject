@@ -71,7 +71,7 @@ public class sentance {
             if(words[i].equals(word))
             {
                 index = i;
-                break;
+                //break;
             }
         }
 
