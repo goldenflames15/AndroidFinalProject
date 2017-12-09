@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.Arrays;
+import java.util.Collections;
 
 /* https://nlp.stanford.edu/software/tagger.shtml#Download */
 //This is the Stanford parts of speech link
@@ -146,137 +148,41 @@ public class MainActivity extends AppCompatActivity {
 
     private class boardSetter{
         public  void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
-            //otherwise it doesn't start the game correctly
-            System.out.println("entered board setter");
-            int random=(int)Math.floor(Math.random()*5);
-            System.out.println("random sentence chosen="+random);
-            sentance display=sentences[random];
-            //sentance display = sentences[random]; //this isn't getting a random sentence, it always returns the last one
-            String testDisplay = display.fullSentence(display.getFull(display));
-            System.out.println(testDisplay);
-            t1.setText(testDisplay);
-            //t1.setText(""); //**This is how you alter the text in the sentence textview
-           // t1.setText(display.fullSentence(display.getFull(display)));
-            //b1.setText(""); //To set the answers b1-b4
-            //b2.setText(""); //To set the answers b1-b4
-           // b3.setText(""); //To set the answers b1-b4
-           // b4.setText(""); //To set the answers b1-b4
+            //sentance display = sentences[(int)Math.floor(Math.random()*4)]; //picks a random sentence
+            t1.setText(""); //**This is how you alter the text in the sentence textview
+            b1.setText(""); //To set the answers b1-b4
+            b2.setText("");
+            b3.setText("");
+            b4.setText("");
+
+            sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
+            //String chosenWord = sentance.getWord(chosenSentence.words);
+            String chosenPart ="";
+
+           // t1.setText(sentance.fullSentence(chosenSentence.words));
+           // t2.setText(chosenWord);
 
             int checker = 0;
-            int assigned = 0;
-            int indexChosen = (int)Math.floor(Math.random()*(display.getFull(display).length));
+            int assigned = -1;
             String picker = " ";
-            String POS[] = {"", "", "", ""};
-            //String chosenWord = display.getWord(display.getFull(display)); //chooses a random word
-            String[] displaySentence = display.getFull(display);
-            String[] displayPOS = display.getPOS(display);
-            String chosenWord = displaySentence[indexChosen];
-            POS[0]= displayPOS[indexChosen];
-            System.out.println("random word is: "+ chosenWord);
-            //POS[0] = display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord); //puts the correct answer in the first slot
+            String POS[] = new String[4];
+           // POS[0] = display[1][(game.pickWord(display))) + 0;
 
-            //t2.setText(display.getPOS(display)[indexChosen]); //this was trying to show the user the part of speech, not the word
-            //t2.setText(display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord));
-            t2.setText(chosenWord);
-            /*
-            while (assigned <= 3) //initialises the array of parts of speach with the three randos
+            while(assignedPos[0] == POS[0] || assignedPos[1] == POS[0] || assignedPos[2] == POS[0])
             {
-                picker = assignedPos[(int)Math.floor(Math.random()*(7))];//only allows a POS to be assigned if it has not been already
-                if(!POS[0].equals(picker)) //***THIS LINE CAUSES CRASH? NULL OBJECT REFERENCE SOMETIMES***
-                    checker++;
-                if(!POS[1].equals(picker))
-                    checker++;
-                if(!POS[2].equals(picker))
-                    checker++;
-                if(!POS[3].equals(picker))
-                    checker++;
-                if(checker == 4 ) {
-                    POS[assigned] = picker;
-                    checker = 0;
-                    assigned++;
-                }
-            }
-            assigned = 0;
-
-            while (assigned < 1)
-            {
-                picker = POS[(int)Math.floor(Math.random()*3)];
-                if(!b1.getText().toString().equals(picker)) //only allows the POS to be assigned from the array if it hasn't already
-                    checker++;
-                if(!b2.getText().toString().equals(picker))
-                    checker++;
-                if(!b3.getText().toString().equals(picker))
-                    checker++;
-                if(!b4.getText().toString().equals(picker))
-                    checker++;
-                if(checker == 4 )
-                {
-                    b1.setText(picker);
-                    b1.setEnabled(true);
-                    checker = 0;
-                    assigned++;
-                }
+                Collections.shuffle(Arrays.asList(assignedPos));
             }
 
-            while (assigned < 2)
-            {
-                picker = POS[(int)Math.floor(Math.random()*3)];
-                if(!b1.getText().toString().equals(picker))
-                    checker++;
-                if(!b2.getText().toString().equals(picker))
-                    checker++;
-                if(!b3.getText().toString().equals(picker))
-                    checker++;
-                if(!b4.getText().toString().equals(picker))
-                    checker++;
-                if(checker == 4 )
-                {
-                    b2.setText(picker);
-                    b2.setEnabled(true);
-                    checker = 0;
-                    assigned++;
-                }
-            }
+            POS[1] = assignedPos[0];
+            POS[2] = assignedPos[1];
+            POS[3] = assignedPos[2];
 
-            while (assigned < 3)
-            {
-                picker = POS[(int)Math.floor(Math.random()*3)];
-                if(!b1.getText().toString().equals(picker))
-                    checker++;
-                if(!b2.getText().toString().equals(picker))
-                    checker++;
-                if(!b3.getText().toString().equals(picker))
-                    checker++;
-                if(!b4.getText().toString().equals(picker))
-                    checker++;
-                if(checker == 4 )
-                {
-                    b3.setText(picker);
-                    b3.setEnabled(true);
-                    checker = 0;
-                    assigned++;
-                }
-            }
+            Collections.shuffle(Arrays.asList(POS));
 
-            while (assigned < 4)
-            {
-                picker = POS[(int)Math.floor(Math.random()*3)];
-                if(!b1.getText().toString().equals(picker))
-                    checker++;
-                if(!b2.getText().toString().equals(picker))
-                    checker++;
-                if(!b3.getText().toString().equals(picker))
-                    checker++;
-                if(!b4.getText().toString().equals(picker))
-                    checker++;
-                if(checker == 4 )
-                {
-                    b4.setText(picker);
-                    b4.setEnabled(true);
-                    checker = 0;
-                    assigned++;
-                }
-            }*/
+            b1.setText(POS[0]); //To set the answers b1-b4
+            b2.setText(POS[1]);
+            b3.setText(POS[2]);
+            b4.setText(POS[3]);
         }
     }
 }
