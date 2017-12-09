@@ -15,7 +15,7 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity {
 
     private quiz game;
-    private sentance[] sentences;
+
     private boardSetter setsBoard;
     private Button b1, b2, b3, b4, ng;
     private TextView t1, cc, t2;
@@ -64,19 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("sen5");
 
-        sentences = new sentance[5];
-        sentences[0]= new sentance(sen1,pos1);
-        sentences[1]= new sentance(sen2,pos2);
-        sentences[2]= new sentance(sen3,pos3);
-        sentences[3]=new sentance(sen4,pos4);
-        sentences[4]=new sentance(sen5,pos5);
-               /* {
-                        new sentance(sen1, pos1),
-                        new sentance(sen2, pos2),
-                        new sentance(sen3, pos3),
-                        new sentance(sen4, pos4),
-                        new sentance(sen5, pos5)
-                }; */
+
+        //sentences = new sentance[5];
+        sentance sentance1 = new sentance(sen1,pos1);
+        sentance sentance2= new sentance(sen2,pos2);
+        sentance sentance3= new sentance(sen3,pos3);
+        sentance sentance4= new sentance(sen4,pos4);
+        sentance sentance5= new sentance(sen5,pos5);
+        sentance[] sentences = {sentance1, sentance2, sentance3, sentance4, sentance5};
 
         System.out.println("Array made");
 
@@ -148,27 +143,33 @@ public class MainActivity extends AppCompatActivity {
 
     private class boardSetter{
         public  void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
-            //sentance display = sentences[(int)Math.floor(Math.random()*4)]; //picks a random sentence
+           // sentance display = sentences[(int)Math.floor(Math.random()*4)]; //picks a random sentence
+           // System.out.print(display.fullSentence(display));
             t1.setText(""); //**This is how you alter the text in the sentence textview
             b1.setText(""); //To set the answers b1-b4
             b2.setText("");
             b3.setText("");
             b4.setText("");
 
-            sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
-            //String chosenWord = sentance.getWord(chosenSentence.words);
-            String chosenPart ="";
+            //sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
+            sentance chosenSentence = sentences[0];
+            
+            System.out.print(chosenSentence.fullSentence(chosenSentence.getFull(chosenSentence)));
+            int indexChosen = (int)Math.floor(Math.random()*(chosenSentence.getFull(chosenSentence).length));
 
-           // t1.setText(sentance.fullSentence(chosenSentence.words));
-           // t2.setText(chosenWord);
+            // String chosenWord = sentance.getWord(chosenSentence.words);
+            //String chosenPart ="";
+
+           t1.setText(sentance.fullSentence(chosenSentence.getFull(chosenSentence))); //displays the sentence to the user
+           t2.setText(chosenSentence.getFull(chosenSentence)[indexChosen]); //displays the word to the user
 
             int checker = 0;
             int assigned = -1;
             String picker = " ";
             String POS[] = new String[4];
-           // POS[0] = display[1][(game.pickWord(display))) + 0;
+            POS[0] = chosenSentence.getPOS(chosenSentence)[indexChosen]; //sets the correct POS in the POS array
 
-            while(assignedPos[0] == POS[0] || assignedPos[1] == POS[0] || assignedPos[2] == POS[0])
+            while(assignedPos[0].equals(POS[0]) || assignedPos[1].equals(POS[0]) || assignedPos[2].equals(POS[0]))
             {
                 Collections.shuffle(Arrays.asList(assignedPos));
             }
