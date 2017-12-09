@@ -15,23 +15,22 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //I want to set the blank box to red/green and also say correct or not
-    //Add sounds??
-    //private quiz game;
+    private quiz game;
     private sentance[] sentences;
+    private boardSetter setsBoard;
     private Button b1, b2, b3, b4, ng;
     private TextView t1, cc, t2;
-    private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};;
-
-
+    private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};
+    private int attempts = 0;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-        //game = new quiz();
 
-        //Declaring buttons and textviews
+        game = new quiz();
+        setsBoard= new boardSetter();
+        //Declaring buttons
         b1 = (Button) findViewById(R.id.Button1);
         b2 = (Button) findViewById(R.id.Button2);
         b3 = (Button) findViewById(R.id.Button3);
@@ -41,58 +40,66 @@ public class MainActivity extends AppCompatActivity {
         cc= (TextView) findViewById(R.id.colorChange);
         t2= (TextView) findViewById(R.id.word);
 
-        String[] sen0 ={"This", "is", "a", "sentence."};
-        String[] pos0 ={"adverb", "verb", "preposition", "noun"};
-
         String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
-        String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective"};
+        String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective, verb, adjective"};
+
+        System.out.println("sen1");
 
         String[] sen2 = {"Go", " to", " the", " last", " building", " on", " the", " left."};
         String[] pos2 = {"verb", "preposition", "adverb", "adjective", "noun", "preposition", "adverb", "noun"};
 
+        System.out.println("sen2");
+
         String[] sen3 = {"Let's", " go", " to", " the", " moon!"};
         String[] pos3 = {"contraction", "verb", "preposition", "adverb", "noun"};
+
+        System.out.println("sen3");
 
         String[] sen4 = {"You", " must", " construct", " additional", " pylons."};
         String[] pos4 = {"noun", "verb", "verb", "adjective", "noun"};
 
-        String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major", " general!"};
-        String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "adjective", "adjective", "noun"};
+        System.out.println("sen4");
 
-        sentences = new sentance[]
-                {
-                        new sentance(sen0, pos0),
+        String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major-general!"};
+        String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "noun", "adjective", "noun"};
+
+        System.out.println("sen5");
+
+        sentences = new sentance[5];
+        sentences[0]= new sentance(sen1,pos1);
+        sentences[1]= new sentance(sen2,pos2);
+        sentences[2]= new sentance(sen3,pos3);
+        sentences[3]=new sentance(sen4,pos4);
+        sentences[4]=new sentance(sen5,pos5);
+               /* {
                         new sentance(sen1, pos1),
                         new sentance(sen2, pos2),
                         new sentance(sen3, pos3),
                         new sentance(sen4, pos4),
                         new sentance(sen5, pos5)
-                };
-        //boardSetter.setBoard();
-        sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
-        String chosenWord = sentance.getWord(chosenSentence.words);
-        String chosenPart =sentance.getWordsPart(chosenSentence.words, chosenSentence.parts, chosenWord);
-        t1.setText(sentance.fullSentence(chosenSentence.words));
-        t2.setText(chosenWord);
-        //pick a random button, and assign a random word
-        //I don't know how to pick random parts and assign them to random buttons without repeating parts....
-        //Trying to make an array of 4 numbers non-repeating to assign random parts to and then change the buttons to those?
+                }; */
 
+        System.out.println("Array made");
 
-        ng.setBackgroundColor(Color.RED);
-        ng.setEnabled(false);
+        setsBoard.setBoard();
+
+        System.out.println("board made");
+
 
 
         View.OnClickListener click = new View.OnClickListener()
         { //when any of the 4 main buttons are pressed
             @Override
             public void onClick(View v) {
-                Button b = (Button) v; //b is the answer the player selected
-                String playerPart = b.getText().toString();
-                String correctPart = t2.getText().toString();
 
-                //if (sentences.alertPlayer("", "") == 0) {
-                if(playerPart.equals(correctPart)) { //if word is correct
+                Button b = (Button) v; //b is the answer the player selected
+                String word = "";
+                word = b.getText().toString();
+                //need to check words part with their choices part
+                String correct = t2.getText().toString();
+
+                if (game.alertPlayer(word, correct) == 0) { //this isn't actually checking if they are right
+                    attempts = 0;
                     b.setBackgroundColor(Color.GREEN); //sets the button they pressed to green
                     ng.setBackgroundColor(Color.GREEN); //sets the playAgain button to green, to show it's activated again
                     b1.setEnabled(false);
@@ -101,18 +108,21 @@ public class MainActivity extends AppCompatActivity {
                     b4.setEnabled(false);
                     ng.setEnabled(true); //activates the playAgain button
                 }
-                else /* if (!pickedWord.equals(correctWord)) {
-                        b.setBackgroundColor(Color.RED); //indicates wrong choice
-                        b.setEnabled(false); //disables wrong choice
-                        //change cc
-                    } else */ { //their last chance
-                    b.setBackgroundColor(Color.RED);
-                    ng.setBackgroundColor(Color.GREEN); //activates new game
-                    b1.setEnabled(false);
-                    b2.setEnabled(false);
-                    b3.setEnabled(false);
-                    b4.setEnabled(false);
-                    ng.setEnabled(true);
+                else {
+                    if (attempts == 0) { //this will always be 0, turns broken, needs to be fixed
+                        attempts++;
+                        b.setBackgroundColor(Color.RED);
+                        b.setEnabled(false);
+                    } else {
+                        attempts = 0;
+                        b.setBackgroundColor(Color.RED);
+                        ng.setBackgroundColor(Color.GREEN);
+                        b1.setEnabled(false);
+                        b2.setEnabled(false);
+                        b3.setEnabled(false);
+                        b4.setEnabled(false);
+                        ng.setEnabled(true);
+                    }
                 }
             }
         };
@@ -123,17 +133,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Button b = (Button) v;
                 //When they push the play again button, this is where the stuff needs to be executed
-                sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
-                String chosenWord = sentance.getWord(chosenSentence.words);
-                String chosenPart ="";
-                t1.setText(sentance.fullSentence(chosenSentence.words));
-                t2.setText(chosenWord);
-
+                setsBoard.setBoard();
                 ng.setBackgroundColor(Color.RED); //When they push the button,
                 ng.setEnabled(false);
             }
         };
-
 
         //These make things happen when the buttons are pressed, functions and such
         b1.setOnClickListener(click);
@@ -141,81 +145,141 @@ public class MainActivity extends AppCompatActivity {
         b3.setOnClickListener(click);
         b4.setOnClickListener(click);
         ng.setOnClickListener(playAgain);
-
-        b1.setText(""); //To set the answers b1-b4
-        b2.setText("");
-        b3.setText("");
-        b4.setText("");
     }
 
-/*
     private class boardSetter{
-        public void setBoard(){
-            //sentance display = sentences[(int)Math.floor(Math.random()*4)]; //picks a random sentence
-            t1.setText(""); //**This is how you alter the text in the sentence textview
-            b1.setText(""); //To set the answers b1-b4
-            b2.setText("");
-            b3.setText("");
-            b4.setText("");
+        public  void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
+            //otherwise it doesn't start the game correctly
+            System.out.println("entered board setter");
+            int random=(int)Math.floor(Math.random()*5);
+            System.out.println("random sentence chosen="+random);
+            sentance display=sentences[random];
+            //sentance display = sentences[random]; //this isn't getting a random sentence, it always returns the last one
+            String testDisplay = display.fullSentence(display.getFull(display));
+            System.out.println(testDisplay);
+            t1.setText(testDisplay);
+            //t1.setText(""); //**This is how you alter the text in the sentence textview
+           // t1.setText(display.fullSentence(display.getFull(display)));
+            //b1.setText(""); //To set the answers b1-b4
+            //b2.setText(""); //To set the answers b1-b4
+           // b3.setText(""); //To set the answers b1-b4
+           // b4.setText(""); //To set the answers b1-b4
 
-            sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
-            String chosenWord = sentance.getWord(chosenSentence.words);
-            String chosenPart ="";
-            t1.setText(sentance.fullSentence(chosenSentence.words));
-            t2.setText(chosenWord);
-
-
-
-
-
-
-
-
-
-
-        }
-
-
-    }
-    */
-}
-
-/* int checker = 0;
-            int assigned = -1;
+            int checker = 0;
+            int assigned = 0;
+            int indexChosen = (int)Math.floor(Math.random()*(display.getFull(display).length));
             String picker = " ";
-            String POS[] = new String[];
-            POS[0] = display[1][(game.pickWord(display))) + 0;
+            String POS[] = {"", "", "", ""};
+            //String chosenWord = display.getWord(display.getFull(display)); //chooses a random word
+            String[] displaySentence = display.getFull(display);
+            String[] displayPOS = display.getPOS(display);
+            String chosenWord = displaySentence[indexChosen];
+            POS[0]= displayPOS[indexChosen];
+            System.out.println("random word is: "+ chosenWord);
+            //POS[0] = display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord); //puts the correct answer in the first slot
 
-            while (assigned <= 3)
+            //t2.setText(display.getPOS(display)[indexChosen]); //this was trying to show the user the part of speech, not the word
+            //t2.setText(display.getWordsPart(display.getPOS(display), display.getFull(display),chosenWord));
+            t2.setText(chosenWord);
+            /*
+            while (assigned <= 3) //initialises the array of parts of speach with the three randos
             {
-                picker = assigned[(int)Math.floor(Math.random()*(assignedpos.length()-1)) + 0
-                if(POS[0] != picker)
+                picker = assignedPos[(int)Math.floor(Math.random()*(7))];//only allows a POS to be assigned if it has not been already
+                if(!POS[0].equals(picker)) //***THIS LINE CAUSES CRASH? NULL OBJECT REFERENCE SOMETIMES***
                     checker++;
-                if(POS[1] != picker)
+                if(!POS[1].equals(picker))
                     checker++;
-                if(POS[2] != picker)
+                if(!POS[2].equals(picker))
                     checker++;
-                if(POS[3] != picker)
+                if(!POS[3].equals(picker))
                     checker++;
-                if(checker == 4 )
+                if(checker == 4 ) {
                     POS[assigned] = picker;
                     checker = 0;
                     assigned++;
+                }
             }
+            assigned = 0;
 
-            while (assigned <= 3)
+            while (assigned < 1)
             {
-                picker = POS[(int)Math.floor(Math.random()*3) + 0];
-                if(b1.getText().toString() != assigned)
+                picker = POS[(int)Math.floor(Math.random()*3)];
+                if(!b1.getText().toString().equals(picker)) //only allows the POS to be assigned from the array if it hasn't already
                     checker++;
-                if(b2.getText().toString() != assigned)
+                if(!b2.getText().toString().equals(picker))
                     checker++;
-                if(b3.getText().toString() != assigned)
+                if(!b3.getText().toString().equals(picker))
                     checker++;
-                if(b4.getText().toString() != assigned)
+                if(!b4.getText().toString().equals(picker))
                     checker++;
                 if(checker == 4 )
-                    b1[assigned] = picker;
+                {
+                    b1.setText(picker);
+                    b1.setEnabled(true);
                     checker = 0;
                     assigned++;
+                }
+            }
+
+            while (assigned < 2)
+            {
+                picker = POS[(int)Math.floor(Math.random()*3)];
+                if(!b1.getText().toString().equals(picker))
+                    checker++;
+                if(!b2.getText().toString().equals(picker))
+                    checker++;
+                if(!b3.getText().toString().equals(picker))
+                    checker++;
+                if(!b4.getText().toString().equals(picker))
+                    checker++;
+                if(checker == 4 )
+                {
+                    b2.setText(picker);
+                    b2.setEnabled(true);
+                    checker = 0;
+                    assigned++;
+                }
+            }
+
+            while (assigned < 3)
+            {
+                picker = POS[(int)Math.floor(Math.random()*3)];
+                if(!b1.getText().toString().equals(picker))
+                    checker++;
+                if(!b2.getText().toString().equals(picker))
+                    checker++;
+                if(!b3.getText().toString().equals(picker))
+                    checker++;
+                if(!b4.getText().toString().equals(picker))
+                    checker++;
+                if(checker == 4 )
+                {
+                    b3.setText(picker);
+                    b3.setEnabled(true);
+                    checker = 0;
+                    assigned++;
+                }
+            }
+
+            while (assigned < 4)
+            {
+                picker = POS[(int)Math.floor(Math.random()*3)];
+                if(!b1.getText().toString().equals(picker))
+                    checker++;
+                if(!b2.getText().toString().equals(picker))
+                    checker++;
+                if(!b3.getText().toString().equals(picker))
+                    checker++;
+                if(!b4.getText().toString().equals(picker))
+                    checker++;
+                if(checker == 4 )
+                {
+                    b4.setText(picker);
+                    b4.setEnabled(true);
+                    checker = 0;
+                    assigned++;
+                }
             }*/
+        }
+    }
+}
