@@ -17,9 +17,56 @@ public class MainActivity extends AppCompatActivity {
     private quiz game;
 
     private boardSetter setsBoard;
+
     private Button b1, b2, b3, b4, ng;
     private TextView t1, cc, t2;
-    private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};
+
+    private String assignedPos[] =
+            {
+                    "adjective",
+                    "adverb",
+                    "conjunction",
+                    "interjection",
+                    "noun",
+                    "preposition",
+                    "pronoun",
+                    "contraction"
+            };
+
+    private String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
+    private String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective, verb, adjective"};
+
+        //System.out.println("sen1");
+
+    private String[] sen2 = {"Go", " to", " the", " last", " building", " on", " the", " left."};
+    private String[] pos2 = {"verb", "preposition", "adverb", "adjective", "noun", "preposition", "adverb", "noun"};
+
+        //System.out.println("sen2");
+
+    private String[] sen3 = {"Let's", " go", " to", " the", " moon!"};
+    private String[] pos3 = {"contraction", "verb", "preposition", "adverb", "noun"};
+
+        //System.out.println("sen3");
+
+    private String[] sen4 = {"You", " must", " construct", " additional", " pylons."};
+    private String[] pos4 = {"noun", "verb", "verb", "adjective", "noun"};
+
+        //System.out.println("sen4");
+
+    private String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major-general!"};
+    private String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "noun", "adjective", "noun"};
+
+        //System.out.println("sen5");
+
+
+    //sentences = new sentance[5];
+    private sentance sentance1 = new sentance(sen1,pos1);
+    private sentance sentance2= new sentance(sen2,pos2);
+    private sentance sentance3= new sentance(sen3,pos3);
+    private sentance sentance4= new sentance(sen4,pos4);
+    private sentance sentance5= new sentance(sen5,pos5);
+    private sentance[] sentences = {sentance1, sentance2, sentance3, sentance4, sentance5};
+
     private int attempts = 0;
     
     @Override
@@ -39,41 +86,10 @@ public class MainActivity extends AppCompatActivity {
         cc= (TextView) findViewById(R.id.colorChange);
         t2= (TextView) findViewById(R.id.word);
 
-        String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
-        String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective, verb, adjective"};
-
-        System.out.println("sen1");
-
-        String[] sen2 = {"Go", " to", " the", " last", " building", " on", " the", " left."};
-        String[] pos2 = {"verb", "preposition", "adverb", "adjective", "noun", "preposition", "adverb", "noun"};
-
-        System.out.println("sen2");
-
-        String[] sen3 = {"Let's", " go", " to", " the", " moon!"};
-        String[] pos3 = {"contraction", "verb", "preposition", "adverb", "noun"};
-
-        System.out.println("sen3");
-
-        String[] sen4 = {"You", " must", " construct", " additional", " pylons."};
-        String[] pos4 = {"noun", "verb", "verb", "adjective", "noun"};
-
-        System.out.println("sen4");
-
-        String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major-general!"};
-        String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "noun", "adjective", "noun"};
-
-        System.out.println("sen5");
-
-
-        //sentences = new sentance[5];
-        sentance sentance1 = new sentance(sen1,pos1);
-        sentance sentance2= new sentance(sen2,pos2);
-        sentance sentance3= new sentance(sen3,pos3);
-        sentance sentance4= new sentance(sen4,pos4);
-        sentance sentance5= new sentance(sen5,pos5);
-        sentance[] sentences = {sentance1, sentance2, sentance3, sentance4, sentance5};
 
         System.out.println("Array made");
+
+        ng.setEnabled(false);
 
         setsBoard.setBoard();
 
@@ -95,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 if (game.alertPlayer(word, correct) == 0) { //this isn't actually checking if they are right
                     attempts = 0;
                     b.setBackgroundColor(Color.GREEN); //sets the button they pressed to green
+                    cc.setBackgroundColor(Color.GREEN);
                     ng.setBackgroundColor(Color.GREEN); //sets the playAgain button to green, to show it's activated again
                     b1.setEnabled(false);
                     b2.setEnabled(false);
@@ -110,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         attempts = 0;
                         b.setBackgroundColor(Color.RED);
+                        cc.setBackgroundColor(Color.GREEN);
                         ng.setBackgroundColor(Color.GREEN);
                         b1.setEnabled(false);
                         b2.setEnabled(false);
@@ -184,6 +202,10 @@ public class MainActivity extends AppCompatActivity {
             b2.setText(POS[1]);
             b3.setText(POS[2]);
             b4.setText(POS[3]);
+
+            ng.setEnabled(false);
+            ng.setBackgroundColor(Color.RED);
+            cc.setBackgroundColor(Color.GREEN);
         }
     }
 }
