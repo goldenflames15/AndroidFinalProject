@@ -64,17 +64,6 @@ public class sentance {
 
     public static boolean checkPos(String word, String part) //this doesn't work?
     {
-        int index = 0;
-
-        for (int i = 0; i < words.length; i++)
-        {
-            if(words[i].equals(word))
-            {
-                index = i;
-                //break;
-            }
-        }
-
-        return part.equals(words[index]);
+        return part == word;
     }
 }

@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private Button b1, b2, b3, b4, ng;
     private TextView t1, cc, t2;
 
+    private sentance chosenSentence;
+    private String correct;
+
     private String assignedPos[] =
             {
                     "adjective",
@@ -108,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 //need to check words part with their choices part
                 String correct = t2.getText().toString();
 
-                if (game.alertPlayer(word, correct) == 0) { //this isn't actually checking if they are right
+                if (chosenSentence.checkPos(correct, b.getText().toString())) { //this isn't actually checking if they are right
                     attempts = 0;
                     b.setBackgroundColor(Color.GREEN); //sets the button they pressed to green
                     cc.setBackgroundColor(Color.GREEN);
@@ -170,7 +173,11 @@ public class MainActivity extends AppCompatActivity {
             b4.setText("");
 
             //sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
-            sentance chosenSentence = sentences[0];
+            chosenSentence = sentences[0];
+
+            Collections.shuffle(Arrays.asList(assignedPos));
+
+            String temp[] = assignedPos;
             
             System.out.print(chosenSentence.fullSentence(chosenSentence.getFull(chosenSentence)));
             int indexChosen = (int)Math.floor(Math.random()*(chosenSentence.getFull(chosenSentence).length));
@@ -180,17 +187,32 @@ public class MainActivity extends AppCompatActivity {
             t2.setText(chosenSentence.getFull(chosenSentence)[indexChosen]); //displays the word to the user
 
             String POS[] = new String[4];
-            POS[0] = chosenSentence.getPOS(chosenSentence)[indexChosen]; //sets the correct POS in the POS array
+
+            POS[0] = "";
+            POS[1] = "";
+            POS[2] = "";
+            POS[3] = "";
+
+            POS[0] = chosenSentence.getPOS(chosenSentence)[indexChosen];//sets the correct POS in the POS array
+            correct = POS[0];
             System.out.print("part of speech chosen= " +POS[0]);
 
-            while(assignedPos[0].equals(POS[0]) || assignedPos[1].equals(POS[0]) || assignedPos[2].equals(POS[0]))
-            {
-                Collections.shuffle(Arrays.asList(assignedPos));
-            }
+            Collections.shuffle(Arrays.asList(temp));
 
-            POS[1] = assignedPos[0];
-            POS[2] = assignedPos[1];
-            POS[3] = assignedPos[2];
+            POS[1] = temp[0];
+            POS[2] = temp[1];
+            POS[3] = temp[2];
+
+            if (temp[0].equals(POS[0]) || temp[1].equals(POS[0]) || temp[2].equals(POS[0]))
+            {
+                while (temp[0].equals(POS[0]) || temp[1].equals(POS[0]) || temp[2].equals(POS[0]))
+                {
+                    Collections.shuffle(Arrays.asList(temp));
+                    POS[1] = temp[0];
+                    POS[2] = temp[1];
+                    POS[3] = temp[2];
+                }
+            }
 
             Collections.shuffle(Arrays.asList(POS));
 
