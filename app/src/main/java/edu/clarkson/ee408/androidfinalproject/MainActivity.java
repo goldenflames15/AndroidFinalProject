@@ -114,8 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 Button b = (Button) v; //b is the answer the player selected
                 String word = "";
                 word = b.getText().toString();
-                String correct = t2.getText().toString(); //THIS HAS TO CHECK IF THE PARTS ARE THE SAME NOT THE WORD IN THE SENTENCE****
-
+                
                 if (chosenSentence.checkPos(correct, b.getText().toString())) { //**this line is causing an error
                     attempts = 0;
                     b.setBackgroundColor(Color.GREEN); //sets the button they pressed to green
