@@ -33,42 +33,43 @@ public class MainActivity extends AppCompatActivity {
                     "noun",
                     "preposition",
                     "pronoun",
-                    "contraction"
+                    "contraction",
+                    "definite article"
             };
 
-    private String[] sen1 = {"The", " sky", " is", " blue,", " and", " the", " grass", " is", " green."};
-    private String[] pos1 = {"adverb", "noun", "verb", "adjective", "conjunction", "adverb", "adjective, verb, adjective"};
+    private String[] sen1 = {"The", " sky", " is", " blue,", " and", " a", " cloud", " is", " fluffy."};
+    private String[] pos1 = {"definite article", "noun", "verb", "adjective", "conjunction", "definite article", "noun, verb, adjective"};
 
         //System.out.println("sen1");
 
-    private String[] sen2 = {"Go", " to", " the", " last", " building", " on", " the", " left."};
-    private String[] pos2 = {"verb", "preposition", "adverb", "adjective", "noun", "preposition", "adverb", "noun"};
+    //private String[] sen2 = {"Go", " to", " the", " last", " building", " on", " the", " left."};
+    //private String[] pos2 = {"verb", "preposition", "adverb", "adjective", "noun", "preposition", "adverb", "noun"};
 
         //System.out.println("sen2");
 
-    private String[] sen3 = {"Let's", " go", " to", " the", " moon!"};
-    private String[] pos3 = {"contraction", "verb", "preposition", "adverb", "noun"};
+    //private String[] sen3 = {"Let's", " go", " to", " the", " moon!"};
+   // private String[] pos3 = {"contraction", "verb", "preposition", "adverb", "noun"};
 
         //System.out.println("sen3");
 
-    private String[] sen4 = {"You", " must", " construct", " additional", " pylons."};
-    private String[] pos4 = {"noun", "verb", "verb", "adjective", "noun"};
+    //private String[] sen4 = {"You", " must", " construct", " additional", "pylons."};
+    //private String[] pos4 = {"noun", "verb", "verb", "adjective", "noun"};
 
         //System.out.println("sen4");
 
-    private String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major-general!"};
-    private String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "noun", "adjective", "noun"};
+    //private String[] sen5 = {"I", " am", " the", " very", " model", " of", " a", " modern", " major", "general!"};
+    //private String[] pos5 = {"noun", "verb", "adverb", "adjective", "noun", "preposition", "adjective", "noun"};
 
         //System.out.println("sen5");
 
 
     //sentences = new sentance[5];
     private sentance sentance1 = new sentance(sen1,pos1);
-    private sentance sentance2= new sentance(sen2,pos2);
-    private sentance sentance3= new sentance(sen3,pos3);
-    private sentance sentance4= new sentance(sen4,pos4);
-    private sentance sentance5= new sentance(sen5,pos5);
-    private sentance[] sentences = new sentance[5];
+    //private sentance sentance2= new sentance(sen2,pos2);
+    //private sentance sentance3= new sentance(sen3,pos3);
+    //private sentance sentance4= new sentance(sen4,pos4);
+   // private sentance sentance5= new sentance(sen5,pos5);
+   private sentance[] sentences = new sentance[5];
 
     private int attempts = 0;
     
@@ -78,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sentences[0] = sentance1;
-        sentences[1] = sentance2;
-        sentences[2] = sentance3;
-        sentences[3] = sentance4;
-        sentences[4] = sentance5;
+        //sentences[1] = sentance2;
+        //sentences[2] = sentance3;
+        //sentences[3] = sentance4;
+        //sentences[4] = sentance5;
 
         game = new quiz();
         setsBoard= new boardSetter();
@@ -225,10 +226,11 @@ public class MainActivity extends AppCompatActivity {
             b2.setText(POS[1]);
             b3.setText(POS[2]);
             b4.setText(POS[3]);
-            b1.setBackgroundColor(0xFF00FFFF);
-            b2.setBackgroundColor(Color.MAGENTA);
-            b3.setBackgroundColor(Color.CYAN);
-            b4.setBackgroundColor(0xFFA50000);
+            b1.setBackgroundColor(0xFFbe56ff);
+           // b1.setBackgroundColor(0xbe56ff); //Sets the background colors back
+            b2.setBackgroundColor(0xFFba4590);
+            b3.setBackgroundColor(0xFF56ebff);
+            b4.setBackgroundColor(0xFFffad56);
             b1.setEnabled(true);
             b2.setEnabled(true);
             b3.setEnabled(true);
