@@ -64,6 +64,6 @@ public class sentance {
 
     public static boolean checkPos(String word, String part) //this doesn't work?
     {
-        return part == word;
+        return part.equals(word);
     }
 }

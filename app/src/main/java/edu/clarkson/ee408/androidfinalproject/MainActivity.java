@@ -108,10 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 Button b = (Button) v; //b is the answer the player selected
                 String word = "";
                 word = b.getText().toString();
-                //need to check words part with their choices part
-                String correct = t2.getText().toString();
+                String correct = t2.getText().toString(); //THIS HAS TO CHECK IF THE PARTS ARE THE SAME NOT THE WORD IN THE SENTENCE****
 
-                if (chosenSentence.checkPos(correct, b.getText().toString())) { //this isn't actually checking if they are right
+                if (chosenSentence.checkPos(correct, b.getText().toString())) { //**this line is causing an error
                     attempts = 0;
                     b.setBackgroundColor(Color.GREEN); //sets the button they pressed to green
                     cc.setBackgroundColor(Color.GREEN);
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     ng.setEnabled(true); //activates the playAgain button
                 }
                 else {
-                    if (attempts == 0) { //this will always be 0, turns broken, needs to be fixed
+                    if (attempts == 0) {
                         attempts++;
                         b.setBackgroundColor(Color.RED);
                         b.setEnabled(false);
@@ -148,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Button b = (Button) v;
                 //When they push the play again button, this is where the stuff needs to be executed
+                //Needs to make this reset the board correctly when they pick playAgain
                 setsBoard.setBoard();
                 ng.setBackgroundColor(Color.RED); //When they push the button,
                 ng.setEnabled(false);
@@ -165,15 +165,15 @@ public class MainActivity extends AppCompatActivity {
     private class boardSetter{
         public  void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
            // sentance display = sentences[(int)Math.floor(Math.random()*4)]; //picks a random sentence
-           // System.out.print(display.fullSentence(display));
-            t1.setText(""); //**This is how you alter the text in the sentence textview
-            b1.setText(""); //To set the answers b1-b4
-            b2.setText("");
-            b3.setText("");
-            b4.setText("");
 
-            //sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
-            chosenSentence = sentences[0];
+            //t1.setText(""); //**This is how you alter the text in the sentence textview
+           //b1.setText(""); //To set the answers b1-b4
+           // b2.setText("");
+            //b3.setText("");
+            //b4.setText("");
+
+            sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
+            //chosenSentence = sentences[0];
 
             Collections.shuffle(Arrays.asList(assignedPos));
 
