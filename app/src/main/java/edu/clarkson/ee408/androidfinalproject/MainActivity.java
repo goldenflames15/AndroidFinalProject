@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private sentance sentance3= new sentance(sen3,pos3);
     private sentance sentance4= new sentance(sen4,pos4);
     private sentance sentance5= new sentance(sen5,pos5);
-    private sentance[] sentences = {sentance1, sentance2, sentance3, sentance4, sentance5};
+    private sentance[] sentences = new sentance[5];
 
     private int attempts = 0;
     
@@ -76,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sentences[0] = sentance1;
+        sentences[1] = sentance2;
+        sentences[2] = sentance3;
+        sentences[3] = sentance4;
+        sentences[4] = sentance5;
 
         game = new quiz();
         setsBoard= new boardSetter();
@@ -166,11 +172,11 @@ public class MainActivity extends AppCompatActivity {
         public  void setBoard(){ //This has to be called before anything else happens or else we have to set the text empty and then set the board
            // sentance display = sentences[(int)Math.floor(Math.random()*4)]; //picks a random sentence
 
-            //t1.setText(""); //**This is how you alter the text in the sentence textview
-           //b1.setText(""); //To set the answers b1-b4
-           // b2.setText("");
-            //b3.setText("");
-            //b4.setText("");
+            t1.setText(""); //**This is how you alter the text in the sentence textview
+            b1.setText(""); //To set the answers b1-b4
+            b2.setText("");
+            b3.setText("");
+            b4.setText("");
 
             sentance chosenSentence = sentences[(int)Math.floor(Math.random()*5)];
             //chosenSentence = sentences[0];
@@ -220,10 +226,18 @@ public class MainActivity extends AppCompatActivity {
             b2.setText(POS[1]);
             b3.setText(POS[2]);
             b4.setText(POS[3]);
+            b1.setBackgroundColor(0xFF00FFFF);
+            b2.setBackgroundColor(Color.MAGENTA);
+            b3.setBackgroundColor(Color.CYAN);
+            b4.setBackgroundColor(0xFFA50000);
+            b1.setEnabled(true);
+            b2.setEnabled(true);
+            b3.setEnabled(true);
+            b4.setEnabled(true);
 
             ng.setEnabled(false);
             ng.setBackgroundColor(Color.RED);
-            //cc.setBackgroundColor(Color.GREEN);
+            cc.setBackgroundColor(Color.RED);
         }
     }
 }
