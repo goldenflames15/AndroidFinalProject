@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private boardSetter setsBoard;
     private Button b1, b2, b3, b4, ng;
     private TextView t1, cc, t2;
-    private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};;
+    private String assignedPos[] = {"adjective", "adverb", "conjunction", "interjection", "noun", "preposition", "pronoun", "contraction"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
